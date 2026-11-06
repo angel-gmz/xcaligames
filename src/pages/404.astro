@@ -3,33 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="404 - Sector No Encontrado"
-  description="La coordenada que buscas no existe o fue absorbida por una grieta en xcaligames.cloud."
+  title="Página no encontrada"
+  description="La página que buscas no existe en xcaligames.cloud."
   noindex={true}
 >
-  <section class="mx-auto flex max-w-3xl flex-col items-center justify-center px-4 py-28 text-center sm:px-6">
-    <span class="border border-[#ff5500]/50 bg-[#ff5500]/10 px-4 py-1 font-mono text-xs font-bold uppercase tracking-widest text-amber-300">
-      ERROR 404 // SECTOR CORRUPTED
-    </span>
-    <h1 class="mt-6 font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
-      Tu antorcha no ilumina este sector
-    </h1>
-    <p class="mt-4 max-w-xl text-base text-slate-300 leading-relaxed">
-      La ruta que intentas explorar fue consumida por una grieta dimensional o ha cambiado de ubicación. Regresa a la base principal para continuar la partida.
+  <section class="mx-auto flex max-w-3xl flex-col items-center px-4 py-28 text-center sm:px-6">
+    <div class="card card-monster flex h-40 w-28 rotate-[-6deg] items-center justify-center font-display text-5xl" aria-hidden="true">404</div>
+    <h1 class="mt-10 text-4xl leading-tight text-parchment sm:text-5xl">Tu antorcha no alumbra esta sala</h1>
+    <p class="mt-4 max-w-xl text-xl leading-relaxed text-ash">
+      Esta página no existe o cambió de lugar. Vuelve al inicio o revisa el devlog.
     </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a
-        href="/"
-        class="hud-btn bg-[#ff5500] px-6 py-3.5 text-sm font-black uppercase tracking-wider text-slate-950 transition hover:bg-amber-400"
-      >
-        Volver a la Base
-      </a>
-      <a
-        href="/blog"
-        class="hud-btn border border-slate-700 bg-[#0b0e17] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:border-[#00e5ff]"
-      >
-        Ir al Devlog
-      </a>
+    <div class="mt-9 flex flex-wrap justify-center gap-4">
+      <a href="/" class="btn-ember inline-flex min-h-12 items-center rounded-full px-7 font-extrabold transition">Volver al inicio</a>
+      <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-7 font-bold text-parchment transition hover:border-gold hover:text-gold">Ir al devlog</a>
     </div>
   </section>
 </BaseLayout>

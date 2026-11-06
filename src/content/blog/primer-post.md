@@ -1,29 +1,32 @@
 ---
 title: "Lanzamiento de Torchbound y el camino hacia Riserift en 2026"
-description: "Descubre cómo optimizamos el rendimiento móvil de Torchbound en Google Play y los primeros detalles técnicos de nuestro próximo título Riserift."
+description: "Cómo hicimos Torchbound, nuestro solitario de mazmorra en 3D basado en Scoundrel con un reto diario para todo el mundo, y los primeros detalles de Riserift."
 pubDate: 2026-11-05
 updatedDate: 2026-11-05
 heroImage: "../../assets/images/blog-primer-post.png"
-heroImageAlt: "Arte conceptual de Torchbound y Riserift desarrollado por XcaliGames"
+heroImageAlt: "Torchbound: una antorcha, 44 cartas y una mazmorra, gratis en Android"
 tags: ["gamedev", "torchbound", "riserift", "indiedev", "android"]
 draft: false
 ---
 
-En **XcaliGames** creemos que tanto los videojuegos como la web moderna deben compartir un mismo principio de ingeniería: **rendimiento extremo, cero fricción y una experiencia memorable para el jugador**.
+En **XcaliGames** creemos que tanto los videojuegos como la web moderna deben compartir un mismo principio de ingeniería: **partidas cortas, decisiones con peso y cero fricción para el jugador**.
 
-Hoy inauguramos nuestro portal oficial en `xcaligames.cloud` y nuestro blog técnico compartiendo el detrás de cámaras de **Torchbound**, ya disponible en dispositivos Android, así como un adelanto exclusivo de nuestro nuevo proyecto en desarrollo: **Riserift**.
+Hoy inauguramos nuestro portal oficial en `xcaligames.cloud` y nuestro blog técnico compartiendo el detrás de cámaras de **Torchbound**, nuestro solitario de mazmorra ya disponible en Android, así como un adelanto exclusivo de nuestro nuevo proyecto en desarrollo: **Riserift**.
 
-## Torchbound: Manteniendo la llama viva a 60 FPS en Android
+## Torchbound: una mazmorra hecha de cartas
 
-Publicar [Torchbound en Google Play](https://play.google.com/store/apps/details?id=com.xcaligames.torchbound) representó un reto técnico fascinante. En un juego donde la iluminación dinámica de tu antorcha es tanto una mecánica de supervivencia como el núcleo visual del diseño de niveles, cada milisegundo en el hilo de renderizado cuenta.
+[Torchbound](https://play.google.com/store/apps/details?id=com.xcaligames.torchbound) es nuestra versión en 3D de **Scoundrel**, el solitario de mazmorra de Zach Gage y Kurt Bieg: 44 cartas, 20 de vida y una decisión en cada carta. Luchar, huir o curarte.
 
-### Optimizaciones clave que implementamos
+### Lo que añadimos al juego original
 
-1. **Batching estático y dinámico de sprites y mallas:** Redujimos las llamadas de dibujado (*Draw Calls*) en un 68% agrupando atlas de texturas comprimidas en formato ASTC.
-2. **Iluminación radial basada en Shaders ligeros:** En lugar de costosas luces en tiempo real con múltiples pases de sombras, diseñamos un shader personalizado de atenuación cuadrática con ruido procedural para simular el parpadeo del fuego sin penalizar la GPU móvil.
-3. **Object Pooling estricto:** Cero asignaciones de memoria (*Garbage Collection spikes*) durante el combate para garantizar *frametimes* estables incluso en dispositivos de gama media.
+1. **Una mesa en 3D a la luz de las antorchas.** Cada monstruo sale de su carta y el juego te muestra el daño antes de cada golpe, para que aprendas las reglas jugando.
+2. **Un reto diario para todo el mundo.** Cada noche se reparte una mazmorra nueva, la misma para todos los jugadores, con tablero mundial en Google Play Games y un resultado que puedes compartir sala por sala sin revelar las cartas.
+3. **Modo Aventura con cinco héroes.** Cada héroe cambia una regla: huir dos veces seguidas, empezar con una daga, curarte más con cada poción.
+4. **Partidas cortas y sin conexión.** Unos cinco minutos por partida, en español e inglés, y gratis sin pagar para ganar.
 
-> "La atmósfera de un juego oscuro depende por completo de la respuesta táctil y la fluidez. Cuando el jugador esquiva en la penumbra, cada frame importa."
+### Cómo está hecho
+
+El juego corre con **Three.js dentro de una app Android**. Las reglas viven aparte de los gráficos, como una máquina de estados pura: cada acción produce eventos que la escena 3D anima. Eso nos permite simular miles de partidas para equilibrar a los héroes y garantizar que el reto diario sea idéntico en todos los teléfonos.
 
 ## Riserift: Nuestro siguiente salto técnico y jugable
 

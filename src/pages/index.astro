@@ -2,450 +2,220 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PlayingCard from '../components/PlayingCard.astro';
 
-import heroBannerImg from '../assets/images/hero-xcaligames.png';
-import torchboundImg from '../assets/images/torchbound-cover.png';
 import riseriftImg from '../assets/images/riserift-cover.png';
+import shot1 from '../assets/images/torchbound/captura-1.jpg';
+import shot2 from '../assets/images/torchbound/captura-2.jpg';
+import shot3 from '../assets/images/torchbound/captura-3.jpg';
+import shot4 from '../assets/images/torchbound/captura-4.jpg';
+import shot5 from '../assets/images/torchbound/captura-5.jpg';
+import shot6 from '../assets/images/torchbound/captura-6.jpg';
+import partida from '../assets/images/torchbound/partida.jpg';
 
-// Obtener los últimos 3 artículos publicados (filtrando drafts en producción)
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.xcaligames.torchbound';
+
 const allPosts = await getCollection('blog', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
-
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat('es-MX', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  }).format(date);
+  new Intl.DateTimeFormat('es-MX', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+
+const gallery = [
+  { src: shot1, alt: 'Pantalla de inicio de Torchbound con los modos Aventura y Desafío diario' },
+  { src: shot2, alt: 'Antes de cada golpe, el juego muestra cuánto daño recibirás con arma o a mano' },
+  { src: shot3, alt: 'Un demonio y un ogro salen de sus cartas sobre la mesa de la mazmorra' },
+  { src: shot4, alt: 'Selección de héroes del modo Aventura: Vagabundo, Pícaro y Guerrero' },
+  { src: shot5, alt: 'Ficha del dragón en el bestiario' },
+  { src: shot6, alt: 'Lista de logros desbloqueados' },
+];
+
+const rules = [
+  {
+    kind: 'monster' as const, value: '8', suit: '♠', label: 'Monstruo',
+    title: 'Monstruos', text: 'Picas y tréboles. Te hacen daño igual a su valor: J vale 11, Q 12, K 13 y A 14.',
+  },
+  {
+    kind: 'weapon' as const, value: '5', suit: '♦', label: 'Arma',
+    title: 'Armas', text: 'Diamantes. Restan su valor al daño, pero después de matar solo sirven contra monstruos más pequeños.',
+  },
+  {
+    kind: 'potion' as const, value: '4', suit: '♥', label: 'Poción',
+    title: 'Pociones', text: 'Corazones. Te curan hasta 20 de vida, y solo una por sala hace efecto.',
+  },
+];
 ---
 
 <BaseLayout
-  title="XcaliGames | Estudio Indie Gamer — Torchbound & Riserift"
-  description="Estudio independiente de videojuegos de acción y supervivencia. Juega Torchbound en Google Play, descubre el universo dimensional de Riserift y lee nuestros devlogs."
+  title="Xcali Games | Torchbound, el solitario de mazmorra con reto diario"
+  description="Xcali Games es un estudio indie en México. Juega Torchbound gratis en Android: un solitario de mazmorra en 3D basado en Scoundrel, con una mazmorra nueva cada día para todo el mundo."
 >
-  <!-- ===================================================================== -->
-  <!-- HERO COMMAND DECK (LCP Optimizado con loading="eager" + high priority) -->
-  <!-- ===================================================================== -->
-  <section class="relative overflow-hidden border-b border-slate-800/90 py-14 sm:py-20 lg:py-24">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-        <!-- Columna Izquierda: Identidad Gamer & CTAs -->
-        <div class="lg:col-span-6">
-          <div class="inline-flex items-center gap-2 border border-[#ff5500]/50 bg-[#ff5500]/10 px-3.5 py-1.5 font-mono text-xs font-bold text-amber-300">
-            <span class="h-2 w-2 bg-[#ff5500]"></span>
-            XCALIGAMES // INDIE ACTION STUDIO
-          </div>
-
-          <h1 class="mt-6 font-display text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.06] uppercase">
-            Domina la penumbra.
-            <span class="block text-[#ff5500]">Fractura el abismo.</span>
-          </h1>
-
-          <p class="mt-5 max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed">
-            Creamos videojuegos diseñados para jugadores que buscan adrenalina, controles precisos a 60 FPS y mundos con atmósfera implacable. Sobrevive hoy a las mazmorras de <strong class="text-amber-300">Torchbound</strong> en Android y prepárate para cruzar las grietas de <strong class="text-[#00e5ff]">Riserift</strong>.
-          </p>
-
-          <!-- Botones HUD Gamer -->
-          <div class="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.xcaligames.torchbound"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hud-btn glow-torch inline-flex items-center gap-3 bg-gradient-to-r from-[#ff5500] to-amber-500 px-6 py-4 text-sm font-black uppercase tracking-wider text-slate-950 transition hover:brightness-110"
-            >
-              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
-              </svg>
-              Descargar Torchbound (Google Play)
-            </a>
-
-            <a
-              href="#riserift"
-              class="hud-btn inline-flex items-center gap-2 border border-[#00e5ff]/50 bg-[#0b0e17] px-6 py-4 text-sm font-bold uppercase tracking-wider text-[#00e5ff] transition hover:bg-[#00e5ff]/15"
-            >
-              Explorar Riserift
-            </a>
-          </div>
-
-          <!-- Telemetría Rápida de Mundos -->
-          <div class="mt-10 grid grid-cols-3 gap-3 border-t border-slate-800/90 pt-6 font-mono">
-            <div class="border-l-2 border-[#ff5500] pl-3">
-              <span class="block text-[11px] text-slate-400">WORLD // 01</span>
-              <strong class="text-sm sm:text-base font-bold text-white">TORCHBOUND</strong>
-              <span class="block text-[11px] text-emerald-400">LIVE • ANDROID</span>
-            </div>
-            <div class="border-l-2 border-[#00e5ff] pl-3">
-              <span class="block text-[11px] text-slate-400">WORLD // 02</span>
-              <strong class="text-sm sm:text-base font-bold text-white">RISERIFT</strong>
-              <span class="block text-[11px] text-[#00e5ff]">IN DEVELOPMENT</span>
-            </div>
-            <div class="border-l-2 border-amber-400 pl-3">
-              <span class="block text-[11px] text-slate-400">PERFORMANCE</span>
-              <strong class="text-sm sm:text-base font-bold text-white">60 FPS</strong>
-              <span class="block text-[11px] text-amber-300">LOW LATENCY</span>
-            </div>
-          </div>
+  <!-- Hero: Torchbound -->
+  <section id="torchbound" class="overflow-hidden" aria-labelledby="heading-hero">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-20 pt-14 sm:px-6 lg:grid-cols-12 lg:px-8 lg:pt-20">
+      <div class="lg:col-span-7">
+        <p class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[15px] font-bold text-gold">
+          <span class="h-2 w-2 rounded-full bg-ember"></span>
+          Ya disponible en Android
+        </p>
+        <h1 id="heading-hero" class="mt-6 text-5xl leading-[1.04] text-parchment sm:text-6xl lg:text-7xl">
+          Una antorcha. 44 cartas. Una mazmorra.
+        </h1>
+        <p class="mt-6 max-w-[34rem] text-xl leading-relaxed text-ash">
+          Torchbound es un solitario de mazmorra en 3D basado en Scoundrel. Lucha, huye o cúrate en partidas de cinco minutos, y cada día enfrenta la misma mazmorra que el resto del mundo.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a href={PLAY_URL} target="_blank" rel="noopener noreferrer" class="btn-ember inline-flex min-h-14 items-center gap-3 rounded-full px-7 text-lg font-extrabold transition">
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+            Descargar en Google Play
+          </a>
+          <a href="#como-se-juega" class="rounded-lg py-2 text-lg font-bold text-parchment underline decoration-gold/60 underline-offset-[6px] hover:text-gold">
+            Cómo se juega
+          </a>
         </div>
+        <p class="mt-5 text-[15px] text-ash/80">Gratis, sin conexión y sin pagar para ganar.</p>
+      </div>
 
-        <!-- Columna Derecha: Viewport HUD Key Art (LCP Element) -->
-        <div class="lg:col-span-6">
-          <div class="hud-cut relative border border-slate-700/80 bg-[#080b12] p-2 shadow-2xl">
-            <div class="mb-2 flex items-center justify-between px-3 py-1 font-mono text-[11px] text-slate-400">
-              <span>VIEWPORT // DUAL_REALM_SHOWCASE</span>
-              <span class="text-[#ff5500]">RES: 60FPS_LOCKED</span>
-            </div>
-            <Image
-              src={heroBannerImg}
-              alt="Arte principal de XcaliGames mostrando Torchbound y Riserift"
-              width={900}
-              height={620}
-              format="webp"
-              loading="eager"
-              fetchpriority="high"
-              class="h-auto w-full object-cover"
-            />
-          </div>
+      <!-- Teléfono con el juego y la mano de cartas -->
+      <div class="relative mx-auto w-full max-w-sm lg:col-span-5">
+        <div class="absolute -inset-10 rounded-full bg-ember/20 blur-3xl" aria-hidden="true"></div>
+        <div class="relative rotate-2 overflow-hidden rounded-[2.2rem] border-[6px] border-[#2A2230] bg-black shadow-2xl shadow-black/60">
+          <Image src={partida} alt="Partida de Torchbound: un demonio y un ogro salen de sus cartas sobre la mesa" width={420} height={714} format="webp" loading="eager" fetchpriority="high" class="h-auto w-full" />
+        </div>
+        <div class="absolute -bottom-10 left-1 flex sm:-left-16" aria-hidden="true">
+          <PlayingCard kind="weapon" value="7" suit="♦" size="sm" class="deal" style="--r:-14deg;--r0:-30deg;--d:150ms" />
+          <PlayingCard kind="monster" value="13" suit="♠" size="sm" class="deal -ml-8 -translate-y-4" style="--r:-2deg;--r0:-10deg;--d:300ms" />
+          <PlayingCard kind="potion" value="6" suit="♥" size="sm" class="deal -ml-8" style="--r:11deg;--r0:25deg;--d:450ms" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- ARSENAL DE VIDEOJUEGOS: DOSSIERS TÁCTICOS DE TORCHBOUND Y RISERIFT    -->
-  <!-- ===================================================================== -->
-  <section id="juegos" class="py-20 sm:py-24" aria-labelledby="heading-juegos">
+  <!-- Reglas -->
+  <section id="como-se-juega" class="border-t border-line/60 bg-crypt/60 py-20 sm:py-24" aria-labelledby="heading-reglas">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-start justify-between gap-4 border-b border-slate-800 pb-8 sm:flex-row sm:items-end">
-        <div>
-          <p class="font-mono text-xs font-bold uppercase tracking-widest text-[#ff5500]">
-            // SELECT YOUR REALM
-          </p>
-          <h2 id="heading-juegos" class="mt-2 font-display text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
-            Arsenal de Videojuegos
-          </h2>
-        </div>
-        <p class="font-mono text-xs text-slate-400">
-          ACTIVE_PROJECTS: 02 &bull; STUDIO: XCALIGAMES
+      <h2 id="heading-reglas" class="max-w-2xl text-4xl leading-tight text-parchment sm:text-5xl">Se aprende en un minuto</h2>
+      <p class="mt-4 max-w-2xl text-xl leading-relaxed text-ash">
+        Cada sala tiene cuatro cartas. Juegas tres y la cuarta se queda para la siguiente. Vacía el mazo antes de que tu vida llegue a cero.
+      </p>
+
+      <ul class="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        {rules.map((r) => (
+          <li class="flex gap-5 lg:flex-col">
+            <PlayingCard kind={r.kind} value={r.value} suit={r.suit} label={r.label} size="md" />
+            <div>
+              <h3 class="text-2xl text-parchment">{r.title}</h3>
+              <p class="mt-2 text-[17px] leading-relaxed text-ash">{r.text}</p>
+            </div>
+          </li>
+        ))}
+        <li class="flex gap-5 lg:flex-col">
+          <div class="card card-flee flex h-[11.2rem] w-32 shrink-0 items-center justify-center text-6xl" aria-hidden="true">🏃</div>
+          <div>
+            <h3 class="text-2xl text-parchment">Huir</h3>
+            <p class="mt-2 text-[17px] leading-relaxed text-ash">Si la sala pinta mal, mándala al fondo del mazo. Nunca dos veces seguidas.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Reto diario -->
+  <section class="py-20 sm:py-24" aria-labelledby="heading-reto">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+      <div class="lg:col-span-7">
+        <h2 id="heading-reto" class="text-4xl leading-tight text-parchment sm:text-5xl">La misma mazmorra para todo el mundo, cada día</h2>
+        <p class="mt-5 max-w-xl text-xl leading-relaxed text-ash">
+          El reto diario reparte las mismas cartas a todos los jugadores. Tu mejor puntuación entra al tablero mundial de Google Play Games, y al terminar puedes compartir tu partida sala por sala, sin revelar las cartas.
+        </p>
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-ash/85">
+          Una mazmorra nueva se abre cada noche (a la 1:00 a.&nbsp;m., hora del centro de México). Juégala varios días seguidos para mantener tu racha.
         </p>
       </div>
-
-      <div class="mt-12 space-y-14">
-        <!-- =============================================================== -->
-        <!-- DOSSIER 01: TORCHBOUND (DISPONIBLE EN GOOGLE PLAY)              -->
-        <!-- =============================================================== -->
-        <article
-          id="torchbound"
-          class="hud-cut glow-torch relative overflow-hidden border border-[#ff5500]/50 bg-[#0b0e17]"
-        >
-          <!-- Barra de estado superior del Dossier -->
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#ff5500]/30 bg-[#140d0a] px-6 py-3 font-mono text-xs">
-            <div class="flex items-center gap-3">
-              <span class="bg-emerald-400 px-2.5 py-0.5 font-black text-slate-950 uppercase">
-                DISPONIBLE YA
-              </span>
-              <span class="text-amber-300 font-bold">
-                ID // com.xcaligames.torchbound
-              </span>
-            </div>
-            <span class="text-slate-300">
-              PLATAFORMA: <strong class="text-white">ANDROID (GOOGLE PLAY)</strong>
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12">
-            <!-- Arte de Torchbound -->
-            <div class="relative bg-[#05060a] lg:col-span-6 flex items-center">
-              <Image
-                src={torchboundImg}
-                alt="Captura y arte oficial de Torchbound disponible en Google Play"
-                width={800}
-                height={450}
-                format="webp"
-                loading="lazy"
-                class="h-full w-full object-cover"
-              />
-            </div>
-
-            <!-- Ficha de Combate y Mecánicas -->
-            <div class="flex flex-col justify-between p-6 sm:p-8 lg:col-span-6">
-              <div>
-                <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-amber-400">
-                  <span>#DUNGEON_SURVIVAL</span>
-                  <span>&bull;</span>
-                  <span>#ACTION_RPG</span>
-                  <span>&bull;</span>
-                  <span>#DYNAMIC_LIGHT</span>
-                </div>
-
-                <h3 class="mt-2 font-display text-3xl font-black uppercase tracking-wide text-white sm:text-4xl">
-                  Torchbound
-                </h3>
-
-                <p class="mt-4 text-base text-slate-300 leading-relaxed">
-                  En las profundidades olvidadas, <strong class="text-white">tu antorcha es tu única línea entre la vida y la muerte</strong>. Si la llama se extingue, las criaturas del abismo atacan sin piedad. Explora mazmorras letales, gestiona el radio de tu fuego en tiempo real y domina un combate táctil diseñado para responder al milisegundo.
-                </p>
-
-                <!-- Atributos estilo RPG Stat Sheet -->
-                <dl class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 font-mono text-xs">
-                  <div class="border border-slate-800 bg-[#07090f] p-3">
-                    <dt class="text-slate-400">MECÁNICA CENTRAL</dt>
-                    <dd class="mt-1 font-bold text-amber-300">Luz Dinámica &amp; Supervivencia</dd>
-                  </div>
-                  <div class="border border-slate-800 bg-[#07090f] p-3">
-                    <dt class="text-slate-400">RENDIMIENTO</dt>
-                    <dd class="mt-1 font-bold text-emerald-400">60 FPS Estables (Shaders ASTC)</dd>
-                  </div>
-                </dl>
-              </div>
-
-              <div class="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800/80 pt-6">
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.xcaligames.torchbound"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hud-btn inline-flex items-center gap-2.5 bg-[#ff5500] px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-950 transition hover:bg-amber-400"
-                >
-                  <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
-                  </svg>
-                  Instalar Gratis en Google Play
-                </a>
-
-                <a
-                  href="/blog/primer-post"
-                  class="font-mono text-xs font-bold text-amber-400 hover:text-amber-300 underline underline-offset-4"
-                >
-                  Ver Ingeniería de Torchbound
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- =============================================================== -->
-        <!-- DOSSIER 02: RISERIFT (EN DESARROLLO ACTIVO)                     -->
-        <!-- =============================================================== -->
-        <article
-          id="riserift"
-          class="hud-cut glow-rift relative overflow-hidden border border-[#00e5ff]/50 bg-[#0b0e17]"
-        >
-          <!-- Barra de estado superior del Dossier -->
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#00e5ff]/30 bg-[#07131e] px-6 py-3 font-mono text-xs">
-            <div class="flex items-center gap-3">
-              <span class="bg-[#00e5ff] px-2.5 py-0.5 font-black text-slate-950 uppercase">
-                EN DESARROLLO (WIP)
-              </span>
-              <span class="text-sky-300 font-bold">
-                CODENAME // PROJECT_RISERIFT
-              </span>
-            </div>
-            <span class="text-slate-300">
-              ESTADO: <strong class="text-[#00e5ff]">PROTOTIPADO &amp; COMBATE VERTICAL</strong>
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12">
-            <!-- Ficha de Riserift (Izquierda en Desktop para alternar ritmo visual) -->
-            <div class="flex flex-col justify-between p-6 sm:p-8 lg:col-span-6 order-2 lg:order-1">
-              <div>
-                <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-[#00e5ff]">
-                  <span>#DIMENSIONAL_ACTION</span>
-                  <span>&bull;</span>
-                  <span>#ROGUELITE_SYNERGY</span>
-                  <span>&bull;</span>
-                  <span>#RIFT_COMBAT</span>
-                </div>
-
-                <h3 class="mt-2 font-display text-3xl font-black uppercase tracking-wide text-white sm:text-4xl">
-                  Riserift
-                </h3>
-
-                <p class="mt-4 text-base text-slate-300 leading-relaxed">
-                  Nuestro nuevo universo en construcción. En <strong class="text-white">Riserift</strong> la realidad se quiebra en medio del combate: atraviesa grietas dimensionales sin pantallas de carga, encadena habilidades modulares de alta velocidad y adáptate a escenarios que alteran sus reglas físicas en cada ascenso.
-                </p>
-
-                <!-- Barras de Progreso de Desarrollo estilo Telemetría Gamer -->
-                <div class="mt-6 space-y-3 border border-slate-800 bg-[#07090f] p-4 font-mono text-xs">
-                  <div>
-                    <div class="flex justify-between text-slate-300">
-                      <span>SISTEMA DE COMBATE &amp; MOVILIDAD</span>
-                      <span class="text-[#00e5ff] font-bold">65%</span>
-                    </div>
-                    <div class="mt-1.5 h-2 w-full bg-slate-800">
-                      <div class="h-full w-[65%] bg-gradient-to-r from-[#00e5ff] to-purple-500"></div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="flex justify-between text-slate-300">
-                      <span>ARQUITECTURA DE GRIETAS (RIFTS)</span>
-                      <span class="text-[#00e5ff] font-bold">50%</span>
-                    </div>
-                    <div class="mt-1.5 h-2 w-full bg-slate-800">
-                      <div class="h-full w-[50%] bg-gradient-to-r from-[#00e5ff] to-purple-500"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800/80 pt-6">
-                <a
-                  href="/blog/primer-post"
-                  class="hud-btn inline-flex items-center gap-2 bg-[#00e5ff] px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-950 transition hover:bg-sky-300"
-                >
-                  Leer Devlog de Riserift
-                </a>
-                <span class="font-mono text-xs text-slate-400">
-                  PRÓXIMA TRANSMISIÓN EN EL BLOG
-                </span>
-              </div>
-            </div>
-
-            <!-- Arte de Riserift -->
-            <div class="relative bg-[#05060a] lg:col-span-6 flex items-center order-1 lg:order-2">
-              <Image
-                src={riseriftImg}
-                alt="Arte conceptual de Riserift en desarrollo por XcaliGames"
-                width={800}
-                height={450}
-                format="webp"
-                loading="lazy"
-                class="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </article>
-      </div>
+      <figure class="lg:col-span-5">
+        <div class="max-w-sm rounded-3xl rounded-bl-md border border-line bg-crypt-2 p-6 text-xl leading-relaxed text-parchment shadow-xl shadow-black/40">
+          <p class="font-bold">Torchbound · Desafío del 5 nov</p>
+          <p class="mt-1">🔥 Escapé con 14 puntos (14 de vida)</p>
+          <p class="mt-3 text-2xl tracking-[0.12em]" aria-hidden="true">🟩🟩🟨🏃🟩🟥🟩🟩<br />🟩🟨🟩🟩</p>
+          <p class="mt-3">Racha: 3 días</p>
+          <p class="mt-1 text-gold">¿Puedes superarme?</p>
+        </div>
+        <figcaption class="mt-4 max-w-sm text-[15px] leading-relaxed text-ash/80">
+          Así se ve un resultado compartido. Cada cuadro es una sala: verde sin daño, amarillo daño leve, rojo daño fuerte; 🏃 es una huida.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- ADN DEL ESTUDIO: INGENIERÍA GAMER                                     -->
-  <!-- ===================================================================== -->
-  <section class="border-t border-slate-800/90 bg-[#070a12] py-16 sm:py-20" aria-labelledby="heading-adn">
+  <!-- Galería -->
+  <section class="border-t border-line/60 bg-crypt/60 py-20 sm:py-24" aria-labelledby="heading-galeria">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
-        <p class="font-mono text-xs font-bold uppercase tracking-widest text-amber-400">
-          // STUDIO SPECS
-        </p>
-        <h2 id="heading-adn" class="mt-2 font-display text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
-          Nuestra Filosofía de Desarrollo
-        </h2>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div class="hud-cut border border-slate-800 bg-[#0b0e17] p-6">
-          <p class="font-mono text-xs font-bold text-[#ff5500]">SPEC // 01</p>
-          <h3 class="mt-2 font-display text-xl font-bold text-white">
-            60 FPS &amp; Cero Fricción
-          </h3>
-          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-            Optimizamos shaders, memoria y draw calls para que cada esquive y ataque responda al instante en pantallas táctiles y PC.
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <h2 id="heading-galeria" class="text-4xl leading-tight text-parchment sm:text-5xl">Más que el reto del día</h2>
+          <p class="mt-4 text-xl leading-relaxed text-ash">
+            Cinco héroes que cambian una regla cada uno en el modo Aventura, monstruos en 3D que salen de sus cartas, un bestiario por completar y 17 logros.
           </p>
         </div>
-
-        <div class="hud-cut border border-slate-800 bg-[#0b0e17] p-6">
-          <p class="font-mono text-xs font-bold text-[#00e5ff]">SPEC // 02</p>
-          <h3 class="mt-2 font-display text-xl font-bold text-white">
-            Sistemas Emergentes
-          </h3>
-          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-            Desde la luz vital en <strong>Torchbound</strong> hasta las fisuras dimensionales de <strong>Riserift</strong>, diseñamos mecánicas que premian la maestría del jugador.
-          </p>
-        </div>
-
-        <div class="hud-cut border border-slate-800 bg-[#0b0e17] p-6">
-          <p class="font-mono text-xs font-bold text-emerald-400">SPEC // 03</p>
-          <h3 class="mt-2 font-display text-xl font-bold text-white">
-            Devlogs Técnicos Abiertos
-          </h3>
-          <p class="mt-2 text-sm text-slate-300 leading-relaxed">
-            Compartimos abiertamente nuestra arquitectura, decisiones de diseño y avances de cada parche con nuestra comunidad.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================================== -->
-  <!-- TRANSMISIONES DEL DEVLOG / PATCH NOTES                                -->
-  <!-- ===================================================================== -->
-  <section class="border-t border-slate-800/90 py-20 sm:py-24" aria-labelledby="heading-blog">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <p class="font-mono text-xs font-bold uppercase tracking-widest text-[#00e5ff]">
-            // DEVLOG TRANSMISSIONS &amp; PATCH NOTES
-          </p>
-          <h2 id="heading-blog" class="mt-2 font-display text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
-            Bitácora de Ingeniería Gamer
-          </h2>
-        </div>
-        <a
-          href="/blog"
-          class="hud-btn border border-slate-700 bg-[#0b0e17] px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-slate-200 transition hover:border-[#ff5500] hover:text-[#ff5500]"
-        >
-          Ver Todos los Logs
+        <a href={PLAY_URL} target="_blank" rel="noopener noreferrer" class="btn-ember inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
+          Jugar gratis
         </a>
       </div>
+    </div>
+    <ul class="mx-auto mt-12 flex max-w-6xl snap-x snap-mandatory scroll-px-4 gap-5 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8" aria-label="Capturas de Torchbound">
+      {gallery.map((g) => (
+        <li class="w-56 shrink-0 snap-start sm:w-64">
+          <Image src={g.src} alt={g.alt} width={320} height={569} format="webp" loading="lazy" class="h-auto w-full rounded-2xl border border-line" />
+        </li>
+      ))}
+    </ul>
+  </section>
 
+  <!-- Riserift -->
+  <section id="riserift" class="py-20 sm:py-24" aria-labelledby="heading-riserift">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+      <div class="lg:col-span-5">
+        <Image src={riseriftImg} alt="Arte conceptual de Riserift" width={800} height={450} format="webp" loading="lazy" class="h-auto w-full rounded-2xl border border-rift/30" />
+      </div>
+      <div class="lg:col-span-7">
+        <p class="inline-flex rounded-full border border-rift/40 bg-rift/10 px-4 py-1.5 text-[15px] font-bold text-rift">En desarrollo</p>
+        <h2 id="heading-riserift" class="mt-4 text-4xl leading-tight text-parchment sm:text-5xl">Riserift</h2>
+        <p class="mt-4 max-w-xl text-xl leading-relaxed text-ash">
+          Nuestro siguiente juego. En Riserift la realidad se quiebra en medio del combate: atraviesa grietas dimensionales, encadena habilidades y adáptate a escenarios que cambian sus reglas en cada ascenso.
+        </p>
+        <a href="/blog" class="mt-6 inline-block rounded-lg py-2 text-lg font-bold text-rift underline decoration-rift/50 underline-offset-[6px] hover:text-parchment">
+          Sigue su desarrollo en el devlog
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devlog -->
+  <section class="border-t border-line/60 py-20 sm:py-24" aria-labelledby="heading-blog">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 id="heading-blog" class="text-4xl leading-tight text-parchment sm:text-5xl">Del devlog</h2>
+        <a href="/blog" class="rounded-lg py-2 text-lg font-bold text-gold underline decoration-gold/50 underline-offset-[6px] hover:text-parchment">Ver todas las entradas</a>
+      </div>
       <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {
-          latestPosts.map((post, idx) => (
-            <article class="hud-cut flex flex-col overflow-hidden border border-slate-800 bg-[#0b0e17] transition hover:border-[#ff5500]/60">
-              <a href={`/blog/${post.id}`} class="relative overflow-hidden bg-[#05060a]">
-                <Image
-                  src={post.data.heroImage}
-                  alt={post.data.heroImageAlt}
-                  width={600}
-                  height={315}
-                  format="webp"
-                  loading="lazy"
-                  class="h-48 w-full object-cover transition duration-300 hover:scale-105"
-                />
-                <span class="absolute top-3 left-3 bg-[#05060a]/90 border border-[#ff5500]/50 px-2.5 py-0.5 font-mono text-[11px] font-bold text-amber-300">
-                  LOG // 0{idx + 1}
-                </span>
-              </a>
-
-              <div class="flex flex-1 flex-col justify-between p-6">
-                <div>
-                  <div class="flex items-center gap-2 font-mono text-xs text-slate-400">
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {formatDate(post.data.pubDate)}
-                    </time>
-                    <span>|</span>
-                    <span class="text-[#00e5ff]">#{post.data.tags[0]}</span>
-                  </div>
-
-                  <h3 class="mt-3 font-display text-xl font-bold text-white leading-snug">
-                    <a href={`/blog/${post.id}`} class="hover:text-[#ff5500] transition-colors">
-                      {post.data.title}
-                    </a>
-                  </h3>
-
-                  <p class="mt-2 line-clamp-3 text-sm text-slate-300 leading-relaxed">
-                    {post.data.description}
-                  </p>
-                </div>
-
-                <div class="mt-6 border-t border-slate-800/80 pt-4">
-                  <a
-                    href={`/blog/${post.id}`}
-                    class="font-mono text-xs font-bold uppercase tracking-wider text-[#ff5500] hover:text-amber-300"
-                  >
-                    [ ABRIR TRANSMISIÓN ]
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))
-        }
+        {latestPosts.map((post) => (
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-line bg-crypt">
+            <a href={`/blog/${post.id}`} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+              <Image src={post.data.heroImage} alt="" width={600} height={315} format="webp" loading="lazy" class="h-48 w-full object-cover" />
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <time datetime={post.data.pubDate.toISOString()} class="text-[15px] text-ash/80">{formatDate(post.data.pubDate)}</time>
+              <h3 class="mt-2 text-xl leading-snug text-parchment">
+                <a href={`/blog/${post.id}`} class="hover:text-gold">{post.data.title}</a>
+              </h3>
+              <p class="mt-3 line-clamp-3 leading-relaxed text-ash">{post.data.description}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>

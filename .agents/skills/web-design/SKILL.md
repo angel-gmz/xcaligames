@@ -11,15 +11,17 @@ description: >-
 
 Follow these design principles and procedures whenever creating or refining web interfaces, landing pages, or components in this workspace.
 
-## 1. Visual Direction & Brand Aesthetics (XcaliGames)
+## 1. Visual Direction & Brand Aesthetics (Xcali Games)
 
-- **Theme Polarity**: Intentional Dark Mode (`#090d16` primary canvas, `#111827` elevated surface, `#161f33` interactive cards) with subtle translucent borders (`border-slate-800/80`).
-- **Game Accents**:
-  - **Torchbound**: Warm ember/flame palette (`#f97316` orange-500, `#fbbf24` amber-400, `#dc2626` red-600) evoking firelight in dark dungeons.
-  - **Riserift**: Dimensional cyan/sky palette (`#38bdf8` sky-400, `#0284c7` sky-600) evoking fractures and vertical energy.
-- **Typography & Hierarchy**:
-  - Display / Headings (`--font-display` / `SpaceGroteskLocal`): Bold weights (`700–800`), tight tracking (`tracking-tight`), clear visual contrast.
-  - Body Copy (`--font-sans` / `InterLocal`): Comfortable reading width (`60ch–72ch`), generous line height (`leading-relaxed`).
+The brand comes from Torchbound: a torchlit card table in a dark dungeon. Tokens live in `src/styles/global.css` (`@theme`), use them instead of raw hex values.
+
+- **Palette**: `night #0A0C14` (canvas), `crypt #15101C` / `crypt-2 #1E1626` (surfaces), `line #33283A` (borders), `gold #E0B45A` (brand, headings, primary button), `ember #FF9A3C` (torchlight glow, focus ring), `parchment #F4E9D8` (cards and main text), `ash #C9BBA6` (secondary text). Card suits: `monster #C2412D`, `weapon #4A9BE0`, `potion #E0569A`.
+- **Riserift** keeps its own accent `rift #5AD0FF`, used only inside Riserift content.
+- **Typography**: `Cinzel` 600 for headings (`font-display`), `Alegreya Sans` 500/700/800 for body (`font-sans`). Both self-hosted in `/public/fonts`, same as the game. Sentence case; no monospace HUD labels, no ALL-CAPS eyebrows.
+- **Signature element**: the playing card (`.card` + `card-monster|weapon|potion`, component `PlayingCard.astro`). Use real cards to explain rules instead of generic feature cards.
+- **Shapes**: rounded game-UI panels (`rounded-2xl`), pill buttons (`btn-ember rounded-full`). No clipped HUD corners.
+- **Motion**: one orchestrated moment only (the hero card deal, `.deal`). Respect reduced motion.
+- **Copy**: plain Spanish (es-MX), describe what the game really does (Scoundrel rules, daily challenge, 5 heroes, offline, free). Always credit Scoundrel to Zach Gage and Kurt Bieg.
 
 ## 2. Core Web Vitals & Technical Constraints (100/100 PageSpeed)
 

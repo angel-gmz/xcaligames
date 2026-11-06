@@ -59,7 +59,7 @@ const websiteAndOrgSchema = {
       url: SITE_URL,
       name: SITE_NAME,
       description:
-        'Estudio de desarrollo de videojuegos indie creador de Torchbound y Riserift. Artículos técnicos de GameDev, rendimiento y arquitectura.',
+        'Estudio independiente de videojuegos en México, creador de Torchbound (solitario de mazmorra en 3D con reto diario) y Riserift.',
       inLanguage: 'es-MX',
       publisher: {
         '@id': `${SITE_URL}/#organization`,
@@ -82,8 +82,14 @@ const websiteAndOrgSchema = {
       '@type': 'VideoGame',
       name: 'Torchbound',
       url: 'https://play.google.com/store/apps/details?id=com.xcaligames.torchbound',
+      description:
+        'Solitario de mazmorra en 3D basado en Scoundrel, con un reto diario igual para todo el mundo y tablero mundial.',
+      genre: ['Juego de cartas', 'Roguelike', 'Solitario'],
+      gamePlatform: 'Android',
       operatingSystem: 'Android',
       applicationCategory: 'GameApplication',
+      inLanguage: ['es', 'en'],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       author: {
         '@id': `${SITE_URL}/#organization`,
       },
@@ -173,19 +179,19 @@ const activeSchema =
 <meta name="author" content={author} />
 <meta name="robots" content={robotsContent} />
 <meta name="generator" content={Astro.generator} />
-<meta name="theme-color" content="#090d16" />
+<meta name="theme-color" content="#0A0C14" />
 
 <!-- Preload de fuentes locales (.woff2) para evitar FOUT/CLS y alcanzar 100/100 en LCP -->
 <link
   rel="preload"
-  href="/fonts/inter-var.woff2"
+  href="/fonts/cinzel-latin-600-normal.woff2"
   as="font"
   type="font/woff2"
   crossorigin="anonymous"
 />
 <link
   rel="preload"
-  href="/fonts/space-grotesk-var.woff2"
+  href="/fonts/alegreya-sans-latin-500-normal.woff2"
   as="font"
   type="font/woff2"
   crossorigin="anonymous"

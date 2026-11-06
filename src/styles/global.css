@@ -1,90 +1,113 @@
 @import "tailwindcss";
 
-/* Tipografía local optimizada (.woff2) con font-display: swap (0 peticiones externas) */
+/* Tipografías de marca: las mismas del juego Torchbound (locales, sin peticiones externas) */
 @font-face {
-  font-family: 'InterLocal';
-  src: url('/fonts/inter-var.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Cinzel';
+  src: url('/fonts/cinzel-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('/fonts/alegreya-sans-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('/fonts/alegreya-sans-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('/fonts/alegreya-sans-latin-800-normal.woff2') format('woff2');
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'SpaceGroteskLocal';
-  src: url('/fonts/space-grotesk-var.woff2') format('woff2');
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --obsidian-void: #05060a;
-  --bunker-armor: #0b0e17;
-  --torch-ember: #ff5500;
-  --torch-gold: #fbbf24;
-  --rift-plasma: #00e5ff;
-  --rift-violet: #7c3aed;
-  --hud-border: #1e2638;
-  --font-sans: 'InterLocal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'SpaceGroteskLocal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+/* Tokens de marca Xcali Games (clases: bg-night, text-gold, font-display, …) */
+@theme {
+  --color-night: #0A0C14;     /* fondo: la mazmorra */
+  --color-crypt: #15101C;     /* superficies */
+  --color-crypt-2: #1E1626;   /* superficies elevadas */
+  --color-line: #33283A;      /* bordes */
+  --color-gold: #E0B45A;      /* marca, títulos */
+  --color-ember: #FF9A3C;     /* luz de antorcha, acción principal */
+  --color-parchment: #F4E9D8; /* cartas y texto */
+  --color-ash: #C9BBA6;       /* texto secundario */
+  --color-monster: #C2412D;
+  --color-weapon: #4A9BE0;
+  --color-potion: #E0569A;
+  --color-rift: #5AD0FF;      /* solo Riserift */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-sans: 'Alegreya Sans', system-ui, sans-serif;
 }
 
 html {
   font-family: var(--font-sans);
-  background-color: var(--obsidian-void);
-  color: #f1f5f9;
+  font-weight: 500;
+  background-color: var(--color-night);
+  color: var(--color-parchment);
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, .font-display {
+h1, h2, h3, .font-display {
   font-family: var(--font-display);
+  font-weight: 600;
 }
 
-/* Fondo táctico tipo HUD Gamer (0 JS, GPU-friendly) */
-.bg-gamer-grid {
-  background-color: var(--obsidian-void);
+/* Fondo: luz cálida de antorcha arriba, mazmorra oscura abajo */
+.bg-dungeon {
+  background-color: var(--color-night);
   background-image:
-    radial-gradient(circle at 18% 12%, rgba(255, 85, 0, 0.12), transparent 38%),
-    radial-gradient(circle at 82% 22%, rgba(0, 229, 255, 0.10), transparent 38%),
-    linear-gradient(to right, rgba(30, 41, 59, 0.22) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.22) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    radial-gradient(ellipse 70% 45% at 70% 0%, rgba(255, 154, 60, 0.13), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 10% 30%, rgba(42, 22, 38, 0.9), transparent 70%);
+  background-repeat: no-repeat;
 }
 
-/* Paneles biselados estilo interfaz de videojuego */
-.hud-cut {
-  clip-path: polygon(
-    0 14px,
-    14px 0,
-    calc(100% - 14px) 0,
-    100% 14px,
-    100% calc(100% - 14px),
-    calc(100% - 14px) 100%,
-    14px 100%,
-    0 calc(100% - 14px)
-  );
+/* Carta física al estilo del juego */
+.card {
+  background: var(--color-parchment);
+  color: #2A1A20;
+  border: 4px solid var(--suit, var(--color-gold));
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.7), inset 0 0 22px rgba(120, 70, 20, 0.18);
+}
+.card-monster { --suit: var(--color-monster); }
+.card-weapon { --suit: var(--color-weapon); }
+.card-potion { --suit: var(--color-potion); }
+.card-flee { --suit: var(--color-gold); }
+
+/* Botón principal: brasa encendida */
+.btn-ember {
+  background: linear-gradient(180deg, #F2C66E, var(--color-gold));
+  color: #2A1A08;
+  box-shadow: 0 10px 30px -8px rgba(255, 154, 60, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.btn-ember:hover { filter: brightness(1.06); }
+
+:focus-visible {
+  outline: 3px solid var(--color-ember);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-.hud-btn {
-  clip-path: polygon(
-    10px 0,
-    100% 0,
-    100% calc(100% - 10px),
-    calc(100% - 10px) 100%,
-    0 100%,
-    0 10px
-  );
+/* Único momento animado: se reparten las cartas del hero al cargar */
+@keyframes deal {
+  from { opacity: 0; transform: translateY(80px) rotate(var(--r0, 0deg)); }
+  to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
 }
-
-/* Efectos de brillo de facción */
-.glow-torch {
-  box-shadow: 0 0 35px -8px rgba(255, 85, 0, 0.35), inset 0 1px 0 0 rgba(251, 191, 36, 0.25);
-}
-
-.glow-rift {
-  box-shadow: 0 0 35px -8px rgba(0, 229, 255, 0.35), inset 0 1px 0 0 rgba(125, 211, 252, 0.25);
+.deal {
+  transform: rotate(var(--r, 0deg));
+  animation: deal 700ms cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
+  animation-delay: var(--d, 0ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
