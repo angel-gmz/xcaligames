@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas inexistentes o parámetros de rastreo innecesarios
+Disallow: /404
+Disallow: /404.html
+
+Host: https://xcaligames.cloud
+Sitemap: https://xcaligames.cloud/sitemap-index.xml
+

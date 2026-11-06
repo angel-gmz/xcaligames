@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - Sector No Encontrado"
+  description="La coordenada que buscas no existe o fue absorbida por una grieta en xcaligames.cloud."
+  noindex={true}
+>
+  <section class="mx-auto flex max-w-3xl flex-col items-center justify-center px-4 py-28 text-center sm:px-6">
+    <span class="border border-[#ff5500]/50 bg-[#ff5500]/10 px-4 py-1 font-mono text-xs font-bold uppercase tracking-widest text-amber-300">
+      ERROR 404 // SECTOR CORRUPTED
+    </span>
+    <h1 class="mt-6 font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+      Tu antorcha no ilumina este sector
+    </h1>
+    <p class="mt-4 max-w-xl text-base text-slate-300 leading-relaxed">
+      La ruta que intentas explorar fue consumida por una grieta dimensional o ha cambiado de ubicación. Regresa a la base principal para continuar la partida.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a
+        href="/"
+        class="hud-btn bg-[#ff5500] px-6 py-3.5 text-sm font-black uppercase tracking-wider text-slate-950 transition hover:bg-amber-400"
+      >
+        Volver a la Base
+      </a>
+      <a
+        href="/blog"
+        class="hud-btn border border-slate-700 bg-[#0b0e17] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:border-[#00e5ff]"
+      >
+        Ir al Devlog
+      </a>
+    </div>
+  </section>
+</BaseLayout>

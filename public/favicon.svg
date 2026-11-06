@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="28" fill="#090D16"/>
+  <path d="M64 18C64 18 90 42 90 68C90 84.5685 78.3594 98 64 98C49.6406 98 38 84.5685 38 68C38 56 46 44 52 38C50 50 56 58 64 58C72 58 70 36 64 18Z" fill="url(#torch)"/>
+  <rect x="57" y="94" width="14" height="20" rx="4" fill="#F59E0B"/>
+  <defs>
+    <linearGradient id="torch" x1="64" y1="18" x2="64" y2="98" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDE047"/>
+      <stop offset="0.5" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#DC2626"/>
+    </linearGradient>
+  </defs>
+</svg>
+
