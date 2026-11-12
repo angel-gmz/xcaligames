@@ -14,6 +14,7 @@ export interface Props {
   tags: string[];
   headings?: MarkdownHeading[];
   rawContent?: string;
+  author?: string;
 }
 
 const {
@@ -26,7 +27,10 @@ const {
   tags = [],
   headings = [],
   rawContent = '',
+  author = 'Xcali Games Studio',
 } = Astro.props;
+
+const isVectorPost = tags.includes('vector-protocol');
 
 // Cálculo de tiempo de lectura estimado (200 palabras por minuto)
 const wordCount = rawContent.trim().split(/\s+/).filter(Boolean).length;
@@ -64,8 +68,19 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
       <h1 class="text-4xl leading-tight text-parchment sm:text-5xl">{title}</h1>
       <p class="mt-4 text-xl leading-relaxed text-ash">{description}</p>
       <p class="mt-5 text-[15px] text-ash/80">
-        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>{updatedDate && updatedDate.valueOf() !== pubDate.valueOf() && (<span>, actualizado el <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>)}<span>. Lectura de {readingTimeMinutes} min.</span>
+        <span>Por <strong class="text-parchment">{author}</strong></span>
+        <span aria-hidden="true"> &middot; </span>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>{updatedDate && updatedDate.valueOf() !== pubDate.valueOf() && (<span> (actualizado el <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time>)</span>)}<span> &middot; Lectura de {readingTimeMinutes} min</span>
       </p>
+      {tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2" aria-label="Etiquetas">
+          {tags.map((tag) => (
+            <li class="rounded-full border border-line bg-crypt px-3 py-1 text-xs font-bold text-ash">
+              #{tag}
+            </li>
+          ))}
+        </ul>
+      )}
       <figure class="mt-8 overflow-hidden rounded-2xl border border-line">
         <Image src={heroImage} alt={heroImageAlt} width={1200} height={630} format="webp" loading="eager" fetchpriority="high" class="h-auto w-full object-cover" />
       </figure>
@@ -98,17 +113,40 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
       <slot />
     </div>
 
-    <footer class="mt-16 rounded-3xl border border-gold/40 bg-crypt p-8">
-      <h2 class="text-3xl text-parchment">Juega el reto de hoy</h2>
-      <p class="mt-2 text-lg text-ash">Torchbound es gratis en Android. La mazmorra de hoy es la misma para todo el mundo.</p>
-      <div class="mt-6 flex flex-wrap gap-4">
-        <a href="https://play.google.com/store/apps/details?id=com.xcaligames.torchbound" target="_blank" rel="noopener noreferrer" class="btn-ember inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
-          Descargar en Google Play
-        </a>
-        <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
-          Más entradas
-        </a>
-      </div>
+    <footer class:list={[
+      'mt-16 rounded-3xl border bg-crypt p-8',
+      isVectorPost ? 'border-vector/40' : 'border-gold/40',
+    ]}>
+      {isVectorPost ? (
+        <>
+          <h2 class="text-3xl text-parchment">Despliega tu chasis en Vector//Protocol</h2>
+          <p class="mt-2 text-lg text-ash">Juega el Demo MVP gratis desde el navegador contra la CPU o en salas en línea de 2 a 4 jugadores.</p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a href="https://vector.xcaligames.cloud/" target="_blank" rel="noopener noreferrer" class="btn-vector inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
+              Jugar demo en vector.xcaligames.cloud
+            </a>
+            <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
+              Más entradas
+            </a>
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 class="text-3xl text-parchment">Juega el reto de hoy</h2>
+          <p class="mt-2 text-lg text-ash">Torchbound es gratis en Android. La mazmorra de hoy es la misma para todo el mundo.</p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a href="https://play.google.com/store/apps/details?id=com.xcaligames.torchbound" target="_blank" rel="noopener noreferrer" class="btn-ember inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
+              Descargar en Google Play
+            </a>
+            <a href="https://vector.xcaligames.cloud/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center rounded-full border border-vector/50 px-6 font-bold text-vector transition hover:bg-vector/10">
+              Probar demo Vector//Protocol
+            </a>
+            <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
+              Más entradas
+            </a>
+          </div>
+        </>
+      )}
     </footer>
   </article>
 </BaseLayout>

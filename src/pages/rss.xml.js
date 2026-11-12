@@ -10,7 +10,7 @@ export async function GET(context) {
   return rss({
     title: 'XcaliGames | Devlog & Blog Oficial',
     description:
-      'Noticias, artículos técnicos y diarios de desarrollo de Torchbound y Riserift por XcaliGames.',
+      'Noticias, artículos técnicos y diarios de desarrollo de Torchbound, Vector//Protocol y Riserift por XcaliGames.',
     site: context.site || 'https://xcaligames.cloud',
     trailingSlash: false,
     items: sortedPosts.map((post) => ({

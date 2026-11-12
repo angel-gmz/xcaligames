@@ -40,8 +40,13 @@ const resolvedCanonical = canonicalURL
 // Ruta absoluta obligatoria para Open Graph y Twitter Image
 const absoluteOgImage = new URL(ogImage, SITE_URL).href;
 
-// Plantilla de título optimizada para SERPs
-const formattedTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+// Plantilla de título optimizada para SERPs (evita duplicar marca y mantiene <= 60 caracteres cuando es posible)
+const hasBrand = /xcali\s*games/i.test(title);
+const formattedTitle = hasBrand
+  ? title
+  : title.length + SITE_NAME.length + 3 <= 60
+    ? `${title} | ${SITE_NAME}`
+    : title;
 
 const robotsContent = noindex
   ? 'noindex, nofollow'
