@@ -76,6 +76,7 @@ const websiteAndOrgSchema = {
       },
       sameAs: [
         'https://play.google.com/store/apps/details?id=com.xcaligames.torchbound',
+        'https://vector.xcaligames.cloud/',
       ],
     },
     {
@@ -89,6 +90,21 @@ const websiteAndOrgSchema = {
       operatingSystem: 'Android',
       applicationCategory: 'GameApplication',
       inLanguage: ['es', 'en'],
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      author: {
+        '@id': `${SITE_URL}/#organization`,
+      },
+    },
+    {
+      '@type': 'VideoGame',
+      name: 'Vector//Protocol',
+      url: 'https://vector.xcaligames.cloud/',
+      description:
+        'Party game táctico de 1 a 4 jugadores en 3D: secuencia el protocolo de tu robot con cartas, mejóralo ronda a ronda y domina la arena en solitario o en línea.',
+      genre: ['Estrategia táctica', 'Programación de bots', 'Party game'],
+      gamePlatform: 'Web Browser',
+      applicationCategory: 'GameApplication',
+      inLanguage: ['es'],
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       author: {
         '@id': `${SITE_URL}/#organization`,

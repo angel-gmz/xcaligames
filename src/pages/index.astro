@@ -5,6 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PlayingCard from '../components/PlayingCard.astro';
 
 import riseriftImg from '../assets/images/riserift-cover.png';
+import vectorHangarImg from '../assets/images/vector-protocol-hangar.png';
+import vectorArenaImg from '../assets/images/vector-protocol-arena.png';
 import shot1 from '../assets/images/torchbound/captura-1.jpg';
 import shot2 from '../assets/images/torchbound/captura-2.jpg';
 import shot3 from '../assets/images/torchbound/captura-3.jpg';
@@ -14,6 +16,7 @@ import shot6 from '../assets/images/torchbound/captura-6.jpg';
 import partida from '../assets/images/torchbound/partida.jpg';
 
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.xcaligames.torchbound';
+const VECTOR_URL = 'https://vector.xcaligames.cloud/';
 
 const allPosts = await getCollection('blog', ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
@@ -175,8 +178,109 @@ const rules = [
     </ul>
   </section>
 
+  <!-- Juegos demo: Vector//Protocol -->
+  <section id="demos" class="border-t border-line/60 py-20 sm:py-24" aria-labelledby="heading-demos">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p class="inline-flex items-center gap-2 rounded-full border border-vector/40 bg-vector/10 px-4 py-1.5 text-[15px] font-bold text-vector">
+          <span class="h-2 w-2 rounded-full bg-vector"></span>
+          Juegos demo · Juega en el navegador
+        </p>
+        <h2 id="heading-demos" class="mt-4 text-4xl leading-tight text-parchment sm:text-5xl">
+          Vector//Protocol
+        </h2>
+        <p class="mt-4 text-xl leading-relaxed text-ash">
+          Secuencia el protocolo, despliega el chasis y domina la arena. Nuestro nuevo <em>party game</em> táctico de 1 a 4 jugadores ya se puede probar gratis desde el navegador, en PC o móvil, sin instalar nada.
+        </p>
+      </div>
+
+      <div class="mt-12 rounded-3xl border border-vector/30 bg-crypt p-6 shadow-2xl shadow-black/50 sm:p-8 lg:p-10">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <div class="flex flex-wrap gap-2 text-sm font-bold">
+              <span class="rounded-full border border-vector/40 bg-vector/10 px-3.5 py-1 text-vector">Demo MVP disponible</span>
+              <span class="rounded-full border border-line bg-crypt-2 px-3.5 py-1 text-parchment/90">1 a 4 jugadores (CPU o en línea)</span>
+              <span class="rounded-full border border-line bg-crypt-2 px-3.5 py-1 text-parchment/90">WebGL2 · ~290 KB</span>
+            </div>
+
+            <h3 class="mt-6 text-3xl leading-snug text-parchment">
+              Programa tu bot con cartas tácticas y sobrevive al derrumbe
+            </h3>
+            <p class="mt-4 text-lg leading-relaxed text-ash">
+              Al iniciar cada ronda eliges 1 de 3 módulos para tu kit, armas tu secuencia de órdenes y ves a los cuatro bots ejecutar su programa al mismo tiempo mientras el borde de la arena cae al vacío.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-[17px] leading-relaxed text-ash">
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-vector" aria-hidden="true"></span>
+                <span><strong class="text-parchment">Modos del demo:</strong> Tutorial interactivo de 2 minutos, Solo vs CPU (3 dificultades) y salas en línea en modo <strong>Batalla</strong> o <strong>Equipos 2 vs 2</strong>.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-vector" aria-hidden="true"></span>
+                <span><strong class="text-parchment">11 chasis y 6 biomas:</strong> Pelea con tu Mecha, Tanque, Araña o Dron sobre cintas transportadoras, hielo, lava, torretas y portales.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-vector" aria-hidden="true"></span>
+                <span><strong class="text-parchment">Sinergias y módulos malditos:</strong> Combina familias de cartas (Artillero, Ágil, Ingeniero y Táctico) o arriesga tu blindaje por potencia de fuego.</span>
+              </li>
+            </ul>
+
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href={VECTOR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-vector inline-flex min-h-14 items-center gap-3 rounded-full px-7 text-lg font-extrabold transition"
+              >
+                <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Jugar demo en vector.xcaligames.cloud
+              </a>
+              <a
+                href="/blog/vector-protocol-demo"
+                class="rounded-lg py-2 text-lg font-bold text-parchment underline decoration-vector/60 underline-offset-[6px] hover:text-vector"
+              >
+                Leer nota de lanzamiento
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-4 lg:col-span-6">
+            <a
+              href={VECTOR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block overflow-hidden rounded-2xl border border-vector/30 bg-night"
+              aria-label="Abrir demo de Vector//Protocol en una pestaña nueva"
+            >
+              <Image
+                src={vectorHangarImg}
+                alt="Hangar 3D de Vector//Protocol con selección de chasis Mecha y consola del piloto"
+                width={800}
+                height={450}
+                format="webp"
+                loading="lazy"
+                class="h-auto w-full transition duration-300 group-hover:scale-[1.02]"
+              />
+            </a>
+            <div class="overflow-hidden rounded-2xl border border-line bg-night">
+              <Image
+                src={vectorArenaImg}
+                alt="Fase de planeación táctica en la arena 3D de Vector//Protocol con riel de programa y cartas de acción"
+                width={800}
+                height={450}
+                format="webp"
+                loading="lazy"
+                class="h-auto w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Riserift -->
-  <section id="riserift" class="py-20 sm:py-24" aria-labelledby="heading-riserift">
+  <section id="riserift" class="border-t border-line/60 bg-crypt/60 py-20 sm:py-24" aria-labelledby="heading-riserift">
     <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
       <div class="lg:col-span-5">
         <Image src={riseriftImg} alt="Arte conceptual de Riserift" width={800} height={450} format="webp" loading="lazy" class="h-auto w-full rounded-2xl border border-rift/30" />

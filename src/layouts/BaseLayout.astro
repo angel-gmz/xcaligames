@@ -9,6 +9,7 @@ const currentPath = Astro.url.pathname;
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.xcaligames.torchbound';
 const nav = [
   { href: '/#torchbound', label: 'Torchbound', active: false },
+  { href: '/#demos', label: 'Demos', active: false },
   { href: '/#riserift', label: 'Riserift', active: false },
   { href: '/blog', label: 'Devlog', active: currentPath.startsWith('/blog') },
 ];
@@ -88,6 +89,7 @@ const nav = [
           <h2 class="font-display text-base text-parchment">Juegos</h2>
           <ul class="mt-3 space-y-2">
             <li><a href={PLAY_URL} target="_blank" rel="noopener noreferrer" class="hover:text-gold">Torchbound en Google Play</a></li>
+            <li><a href="https://vector.xcaligames.cloud/" target="_blank" rel="noopener noreferrer" class="hover:text-vector">Vector//Protocol (Demo web)</a></li>
             <li><a href="/#riserift" class="hover:text-rift">Riserift (en desarrollo)</a></li>
           </ul>
         </div>

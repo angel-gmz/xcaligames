@@ -44,6 +44,7 @@
   --color-weapon: #4A9BE0;
   --color-potion: #E0569A;
   --color-rift: #5AD0FF;      /* solo Riserift */
+  --color-vector: #3EC5FF;    /* señal táctica Vector//Protocol */
   --font-display: 'Cinzel', 'Times New Roman', serif;
   --font-sans: 'Alegreya Sans', system-ui, sans-serif;
 }
@@ -92,6 +93,14 @@ h1, h2, h3, .font-display {
   box-shadow: 0 10px 30px -8px rgba(255, 154, 60, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 .btn-ember:hover { filter: brightness(1.06); }
+
+/* Botón táctico: señal cian Vector//Protocol */
+.btn-vector {
+  background: linear-gradient(180deg, #6FD6FF, var(--color-vector));
+  color: #04101C;
+  box-shadow: 0 10px 30px -8px rgba(62, 197, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn-vector:hover { filter: brightness(1.08); }
 
 :focus-visible {
   outline: 3px solid var(--color-ember);
