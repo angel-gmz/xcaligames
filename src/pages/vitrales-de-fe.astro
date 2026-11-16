@@ -1,0 +1,1380 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import '../styles/global.css';
+import coverImg from '../assets/images/vitrales-de-fe-cover.png';
+
+const title = 'Vitrales de Fe — Lectura bíblica diaria sin culpas';
+const description =
+  'Proyecto de apoyo a la comunidad de Xcali Games: ilumina 15 vitrales góticos pieza a pieza, lee la Biblia completa de 66 libros offline y comparte postales sin anuncios.';
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <SEOHead title={title} description={description} ogImage={coverImg.src} />
+  </head>
+  <body class="vf-body">
+    <header class="vf-topbar">
+      <div class="vf-topbar-inner">
+        <div class="vf-brand-group">
+          <a href="#inicio" class="vf-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5.5 21V11.6c0-4.3 3-7.2 6.5-9.1 3.5 1.9 6.5 4.8 6.5 9.1V21Z" fill="#090910" />
+              <path d="M6.8 19.6V12.5H11.4V19.6Z" fill="#3E7BFA" />
+              <path d="M12.6 19.6V12.5H17.2V19.6Z" fill="#F5C451" />
+              <path d="M6.8 11.4c.2-3 2.1-5.4 4.6-7.1v7.1Z" fill="#D94B43" />
+              <path d="M17.2 11.4h-4.6V4.3c2.5 1.7 4.4 4.1 4.6 7.1Z" fill="#2E9E73" />
+            </svg>
+            Vitrales de Fe
+          </a>
+          <a href="/" class="vf-studio-badge" aria-label="Volver al inicio de Xcali Games">
+            ← Xcali Games
+          </a>
+        </div>
+
+        <nav class="vf-nav" aria-label="Navegación de Vitrales de Fe">
+          <a href="#experiencia">Cómo funciona</a>
+          <a href="#vitrales">15 Vitrales</a>
+          <a href="#biblia">Biblia y Postales</a>
+          <a href="/vitrales-de-fe-privacidad">Privacidad</a>
+          <a href="/blog/vitrales-de-fe" class="vf-nav-cta">Leer nota del proyecto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="vf-hero">
+        <div class="vf-hero-inner">
+          <div>
+            <span class="vf-eyebrow">Apoyo a la comunidad · Offline · Sin anuncios</span>
+            <h1 class="vf-h1">
+              Un <em>vitral de luz</em> que crece con cada lectura bíblica.
+            </h1>
+            <p class="vf-hero-copy">
+              Vitrales de Fe transforma tu momento diario con la Escritura en una experiencia serena y visual.
+              Elige cómo llega tu corazón, descubre un pasaje, escribe una breve reflexión e ilumina una nueva
+              pieza de vidrio en tu colección.
+            </p>
+
+            <div class="vf-mood-pills" aria-label="Cinco estados de ánimo">
+              <span class="vf-mood-pill"><span class="vf-mood-dot" style="background:#7DB4EE"></span>Buscando paz</span>
+              <span class="vf-mood-pill"><span class="vf-mood-dot" style="background:#E0566A"></span>Necesito fuerza</span>
+              <span class="vf-mood-pill"><span class="vf-mood-dot" style="background:#F2B441"></span>Agradecido</span>
+              <span class="vf-mood-pill"><span class="vf-mood-dot" style="background:#56BE92"></span>Con esperanza</span>
+              <span class="vf-mood-pill"><span class="vf-mood-dot" style="background:#A488EA"></span>Sabiduría</span>
+            </div>
+
+            <div class="vf-hero-actions">
+              <a href="#vitrales" class="vf-btn-gold">Explorar los 15 vitrales</a>
+              <a href="/blog/vitrales-de-fe" class="vf-btn-outline-light">Leer nota en el devlog →</a>
+            </div>
+
+            <div class="vf-hero-stats">
+              <div>
+                <div class="vf-stat-num">15 vitrales</div>
+                <div class="vf-stat-label">235 piezas únicas dibujadas en SVG</div>
+              </div>
+              <div>
+                <div class="vf-stat-num">66 libros</div>
+                <div class="vf-stat-label">1,189 capítulos offline (VBL)</div>
+              </div>
+              <div>
+                <div class="vf-stat-num">0 anuncios</div>
+                <div class="vf-stat-label">100 % privada en tu dispositivo</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vf-stage" aria-label="Demostración interactiva del vitral">
+            <div class="vf-stage-header">
+              <span class="vf-stage-title">El Alba de la Creación</span>
+              <span class="vf-stage-counter" id="demo-counter">4 / 9 cuadros</span>
+            </div>
+
+            <div class="vf-arch-frame">
+              <div class="vf-arch-inner">
+                <svg id="demo-mural-svg" viewBox="0 0 300 400" role="img" aria-label="Vitral interactivo El Alba de la Creación">
+                  <rect x="0" y="0" width="300" height="400" fill="#090910" />
+
+                  <g class="vf-mural-tile vf-tile-lit" data-tile="0">
+                    <rect x="6" y="6" width="92" height="124" fill="#213878" />
+                    <path d="M6 70 Q52 24 98 70 L98 130 L6 130 Z" fill="#3256B5" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-lit" data-tile="1">
+                    <rect x="104" y="6" width="92" height="124" fill="#2A468E" />
+                    <circle cx="150" cy="74" r="30" fill="#F5C451" />
+                    <circle cx="150" cy="74" r="16" fill="#FFE699" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-lit" data-tile="2">
+                    <rect x="202" y="6" width="92" height="124" fill="#1C2C63" />
+                    <path d="M202 88 Q248 40 294 88 L294 130 L202 130 Z" fill="#463E8C" />
+                  </g>
+
+                  <g class="vf-mural-tile vf-tile-lit" data-tile="3">
+                    <rect x="6" y="136" width="92" height="128" fill="#8D3B32" />
+                    <path d="M6 210 L98 158 L98 264 L6 264 Z" fill="#D96B43" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-dark" data-tile="4">
+                    <rect x="104" y="136" width="92" height="128" fill="#C9732B" />
+                    <circle cx="150" cy="200" r="36" fill="#F5C451" />
+                    <circle cx="150" cy="200" r="18" fill="#FFF3C4" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-dark" data-tile="5">
+                    <rect x="202" y="136" width="92" height="128" fill="#7D334A" />
+                    <path d="M202 158 L294 210 L294 264 L202 264 Z" fill="#E38A42" />
+                  </g>
+
+                  <g class="vf-mural-tile vf-tile-dark" data-tile="6">
+                    <rect x="6" y="270" width="92" height="124" fill="#1B4D7A" />
+                    <path d="M6 312 Q52 292 98 312 L98 394 L6 394 Z" fill="#3B82B8" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-dark" data-tile="7">
+                    <rect x="104" y="270" width="92" height="124" fill="#235E8C" />
+                    <path d="M126 270 L174 270 L188 394 L112 394 Z" fill="#F5C451" opacity="0.82" />
+                  </g>
+                  <g class="vf-mural-tile vf-tile-dark" data-tile="8">
+                    <rect x="202" y="270" width="92" height="124" fill="#17416B" />
+                    <path d="M202 312 Q248 292 294 312 L294 394 L202 394 Z" fill="#2E74A6" />
+                  </g>
+
+                  <line x1="101" y1="0" x2="101" y2="400" stroke="#090910" stroke-width="5" />
+                  <line x1="199" y1="0" x2="199" y2="400" stroke="#090910" stroke-width="5" />
+                  <line x1="0" y1="133" x2="300" y2="133" stroke="#090910" stroke-width="5" />
+                  <line x1="0" y1="267" x2="300" y2="267" stroke="#090910" stroke-width="5" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="vf-capsule-live">
+              <div class="vf-capsule-meta">
+                <span id="capsule-tile-name">Pieza: La aurora</span>
+                <span id="capsule-ref">Lamentaciones 3:23</span>
+              </div>
+              <p class="vf-capsule-verse" id="capsule-text">
+                «Su fidelidad es grande; sus misericordias son nuevas cada mañana.»
+              </p>
+            </div>
+
+            <div class="vf-stage-footer">
+              <span>Toca los cuadros oscuros del vitral para encenderlos</span>
+              <button type="button" class="vf-reset-btn" id="reset-demo">Reiniciar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="vf-section" id="experiencia">
+        <div class="vf-section-tag">Experiencia diaria</div>
+        <h2 class="vf-section-heading">Constancia en la Palabra, sin prisa ni culpas.</h2>
+        <p class="vf-section-sub">
+          Diseñada con la estética cálida del papel de códice y tinta roja de rúbrica, Vitrales de Fe acompaña tu
+          ritmo real con recompensas amables y cero presiones artificiales.
+        </p>
+
+        <div class="vf-steps-grid">
+          <article class="vf-step-card">
+            <span class="vf-step-num">1</span>
+            <h3>Elige tu estado de ánimo</h3>
+            <p>
+              Cada día comienza eligiendo cómo te sientes hoy entre cinco emociones. La app selecciona un pasaje
+              acorde de su catálogo curado de 75 versículos (y puedes cambiar el texto con un toque).
+            </p>
+          </article>
+          <article class="vf-step-card">
+            <span class="vf-step-num">2</span>
+            <h3>Descubre la palabra viva</h3>
+            <p>
+              Completa una palabra clave dentro del versículo para fijar su sentido en tu mente y ganar
+              <strong>Puntos de Luz</strong>. Sin temporizadores ni castigos por equivocarte.
+            </p>
+          </article>
+          <article class="vf-step-card">
+            <span class="vf-step-num">3</span>
+            <h3>Ilumina y guarda tu cápsula</h3>
+            <p>
+              Un nuevo cuadro de tu vitral cobra color y guarda la fecha, la cita y tu reflexión personal. Y si
+              tienes un día ocupado, la <strong>Vela de Vigilia</strong> protege tu racha sin estrés.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="vf-section" id="vitrales">
+        <div class="vf-section-tag">Colección completa · 235 piezas</div>
+        <h2 class="vf-section-heading">15 vitrales hechos con geometría y color.</h2>
+        <p class="vf-section-sub">
+          Avanza por 8 vitrales progresivos —desde retículas de 3 × 3 hasta el gran mural de 5 × 5— o canjea tus
+          Puntos de Luz en la Tienda por 7 vitrales especiales y 6 marcos arquitectónicos.
+        </p>
+
+        <div class="vf-tabs" role="tablist" aria-label="Categorías de vitrales">
+          <button type="button" class="vf-tab-btn active" data-filter="progressive" role="tab" aria-selected="true">
+            8 Vitrales Progresivos (134 cuadros)
+          </button>
+          <button type="button" class="vf-tab-btn" data-filter="special" role="tab" aria-selected="false">
+            7 Vitrales Especiales de Tienda (101 cuadros)
+          </button>
+        </div>
+
+        <div class="vf-murals-grid" id="grid-progressive">
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#1C2E66" />
+              <circle cx="60" cy="54" r="24" fill="#F5C451" />
+              <path d="M0 108 Q30 96 60 108 T120 108 L120 160 L0 160 Z" fill="#2B5B8E" />
+              <path d="M40 0 V160 M80 0 V160 M0 53 H120 M0 106 H120" stroke="#090910" stroke-width="3" />
+            </svg>
+            <h4>El Alba de la Creación</h4>
+            <span class="vf-mural-meta">3 × 3 · 9 cuadros · Inicial</span>
+            <p class="vf-mural-theme">La primera luz sobre la faz de las aguas.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#5D9BE0" />
+              <path d="M0 112 Q60 88 120 112 V160 H0 Z" fill="#3E8E5A" />
+              <line x1="62" y1="54" x2="54" y2="145" stroke="#8A5524" stroke-width="5" />
+              <path d="M62 54 C62 42 78 42 78 54" fill="none" stroke="#8A5524" stroke-width="5" />
+              <path d="M40 0 V160 M80 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="3" />
+            </svg>
+            <h4>El Buen Pastor</h4>
+            <span class="vf-mural-meta">3 × 4 · 12 cuadros</span>
+            <p class="vf-mural-theme">Salmo 23: delicados pastos y aguas de reposo.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#10183A" />
+              <polygon points="55,34 0,10 0,68" fill="#F5C451" opacity="0.7" />
+              <polygon points="65,34 120,10 120,68" fill="#F5C451" opacity="0.7" />
+              <rect x="48" y="34" width="24" height="92" fill="#D9D2C5" />
+              <circle cx="60" cy="34" r="9" fill="#FFE680" />
+              <path d="M0 124 Q60 110 120 124 V160 H0 Z" fill="#1A426E" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Faro de Esperanza</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros</span>
+            <p class="vf-mural-theme">Una luz que guía en medio de la noche.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#23483A" />
+              <circle cx="60" cy="54" r="38" fill="#3B8E5B" />
+              <circle cx="42" cy="48" r="20" fill="#54B06C" />
+              <circle cx="78" cy="48" r="20" fill="#54B06C" />
+              <rect x="52" y="76" width="16" height="62" fill="#6E4427" />
+              <rect x="0" y="134" width="120" height="26" fill="#2F7AA6" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>El Árbol de la Vida</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros</span>
+            <p class="vf-mural-theme">Salmo 1 y Apocalipsis 22: plantado junto a corrientes.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#355C8C" />
+              <path d="M10 105 A50 50 0 0 1 110 105" fill="none" stroke="#D94B43" stroke-width="8" />
+              <path d="M18 105 A42 42 0 0 1 102 105" fill="none" stroke="#F5C451" stroke-width="8" />
+              <path d="M26 105 A34 34 0 0 1 94 105" fill="none" stroke="#3FA36C" stroke-width="8" />
+              <rect x="0" y="120" width="120" height="40" fill="#23476A" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 32 H120 M0 64 H120 M0 96 H120 M0 128 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>El Arco de la Promesa</h4>
+            <span class="vf-mural-meta">4 × 5 · 20 cuadros</span>
+            <p class="vf-mural-theme">Génesis 9: mi arco he puesto en las nubes como pacto.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#101534" />
+              <polygon points="60,12 67,38 92,42 67,48 60,82 53,48 28,42 53,38" fill="#F5C451" />
+              <path d="M0 116 Q60 98 120 116 V160 H0 Z" fill="#2A2444" />
+              <rect x="44" y="114" width="32" height="24" fill="#6F4C2E" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Estrella de Belén</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros</span>
+            <p class="vf-mural-theme">Mateo 2: al ver la estrella, se llenaron de alegría.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#1E284D" />
+              <path d="M0 44 H42 L34 160 H0 Z" fill="#2567A8" />
+              <path d="M120 44 H78 L86 160 H120 Z" fill="#2567A8" />
+              <path d="M42 44 H78 L86 160 H34 Z" fill="#D4A66A" />
+              <rect x="54" y="8" width="12" height="44" fill="#F08A38" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 32 H120 M0 64 H120 M0 96 H120 M0 128 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Camino en el Mar</h4>
+            <span class="vf-mural-meta">4 × 5 · 20 cuadros</span>
+            <p class="vf-mural-theme">Éxodo 14: las aguas fueron como un muro a ambos lados.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#D97C4B" />
+              <circle cx="60" cy="48" r="24" fill="#FFE680" />
+              <path d="M0 108 Q60 92 120 108 V160 H0 Z" fill="#3D7856" />
+              <circle cx="60" cy="120" r="22" fill="#FFF7DF" />
+              <circle cx="46" cy="122" r="14" fill="#2B2420" />
+              <path d="M24 0 V160 M48 0 V160 M72 0 V160 M96 0 V160 M0 32 H120 M0 64 H120 M0 96 H120 M0 128 H120" stroke="#090910" stroke-width="2.2" />
+            </svg>
+            <h4>El Jardín del Alba</h4>
+            <span class="vf-mural-meta">5 × 5 · 25 cuadros</span>
+            <p class="vf-mural-theme">Lucas 24: ¿por qué buscan entre los muertos al que vive?</p>
+          </article>
+        </div>
+
+        <div class="vf-murals-grid vf-hidden" id="grid-special">
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#46205E" />
+              <polygon points="24,96 32,54 48,74 60,46 72,74 88,54 96,96" fill="#F5C451" />
+              <rect x="24" y="96" width="72" height="14" fill="#D9A21B" />
+              <path d="M40 0 V160 M80 0 V160 M0 53 H120 M0 106 H120" stroke="#090910" stroke-width="3" />
+            </svg>
+            <h4>Corona de Gracia</h4>
+            <span class="vf-mural-meta">3 × 3 · 9 cuadros · 45 pts</span>
+            <p class="vf-mural-theme">La gracia que corona la vida.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#181228" />
+              <circle cx="60" cy="78" r="34" fill="#B83B28" />
+              <polygon points="60,30 78,76 60,104 42,76" fill="#F5C451" />
+              <rect x="0" y="122" width="120" height="38" fill="#6F462B" />
+              <path d="M40 0 V160 M80 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="3" />
+            </svg>
+            <h4>La Zarza Ardiente</h4>
+            <span class="vf-mural-meta">3 × 4 · 12 cuadros · 65 pts</span>
+            <p class="vf-mural-theme">Éxodo 3: el fuego ardía y la zarza no se consumía.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#2B3E2A" />
+              <path d="M60 154 C54 114 70 86 58 40" fill="none" stroke="#6E4427" stroke-width="10" />
+              <circle cx="42" cy="56" r="14" fill="#4CA35C" />
+              <circle cx="78" cy="50" r="15" fill="#4CA36C" />
+              <circle cx="44" cy="94" r="9" fill="#7C347D" />
+              <circle cx="54" cy="96" r="9" fill="#9A459C" />
+              <path d="M40 0 V160 M80 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="3" />
+            </svg>
+            <h4>La Vid Verdadera</h4>
+            <span class="vf-mural-meta">3 × 4 · 12 cuadros · 75 pts</span>
+            <p class="vf-mural-theme">Juan 15: yo soy la vid, ustedes son las ramas.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#121426" />
+              <circle cx="60" cy="80" r="46" fill="#090910" />
+              <polygon points="60,36 70,66 102,80 70,94 60,124 50,94 18,80 50,66" fill="#D94B43" />
+              <circle cx="60" cy="80" r="16" fill="#F5C451" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Rosetón del Amor Eterno</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros · 90 pts</span>
+            <p class="vf-mural-theme">El amor que nunca deja de ser.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#3B6FA6" />
+              <rect x="0" y="106" width="120" height="54" fill="#46965E" />
+              <line x1="60" y1="74" x2="60" y2="148" stroke="#2F6E42" stroke-width="5" />
+              <circle cx="60" cy="64" r="18" fill="#FFF9ED" />
+              <circle cx="60" cy="64" r="6" fill="#F5C451" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Lirios del Campo</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros · 95 pts</span>
+            <p class="vf-mural-theme">Mateo 6: miren cómo crecen los lirios del campo.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#1C2754" />
+              <rect x="22" y="72" width="76" height="62" fill="#D4A446" />
+              <rect x="44" y="38" width="32" height="96" fill="#F5C451" />
+              <rect x="0" y="134" width="120" height="26" fill="#2E9E73" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 40 H120 M0 80 H120 M0 120 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Ciudad de Luz</h4>
+            <span class="vf-mural-meta">4 × 4 · 16 cuadros · 110 pts</span>
+            <p class="vf-mural-theme">Apocalipsis 21: resplandeciente como piedra preciosa.</p>
+          </article>
+
+          <article class="vf-mural-card">
+            <svg class="vf-mural-thumb" viewBox="0 0 120 160" aria-hidden="true">
+              <rect width="120" height="160" fill="#141833" />
+              <path d="M22 150 V72 Q60 12 98 72 V150 Z" fill="#2D56A6" />
+              <circle cx="60" cy="60" r="18" fill="#F5C451" />
+              <polygon points="0,150 60,96 120,150" fill="#3B8E5A" />
+              <path d="M30 0 V160 M60 0 V160 M90 0 V160 M0 32 H120 M0 64 H120 M0 96 H120 M0 128 H120" stroke="#090910" stroke-width="2.5" />
+            </svg>
+            <h4>Vitral de las Bienaventuranzas</h4>
+            <span class="vf-mural-meta">4 × 5 · 20 cuadros · 135 pts</span>
+            <p class="vf-mural-theme">Mateo 5: bienaventurados los de limpio corazón.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="vf-section" id="biblia">
+        <div class="vf-split-feature">
+          <div>
+            <div class="vf-section-tag">Biblia completa &amp; Postales PNG</div>
+            <h2 class="vf-section-heading">66 libros offline con menú flotante y tarjetas para compartir.</h2>
+            <p class="vf-section-sub" style="margin-bottom: 18px;">
+              Lee el Antiguo y Nuevo Testamento completos sin gastar datos móviles. Cada libro carga bajo demanda
+              en milisegundos gracias a su caché interno, con separadores persistentes y búsqueda global.
+            </p>
+
+            <ul class="vf-feature-list">
+              <li><strong>Gesto natural y menú flotante:</strong> toca o desliza cualquier versículo para abrir al instante los botones de <em>Guardar</em>, ampliar con <em>+1 verso</em> o <em>Compartir</em>.</li>
+              <li><strong>Postales 1080 × 1350 px:</strong> comparte citas bíblicas en WhatsApp, Instagram o Estados con un diseño de rosetón gótico y tres paletas intercambiables.</li>
+              <li><strong>Seguimiento de lectura:</strong> marca capítulos leídos para ganar +5 Puntos de Luz la primera vez y registra tu avance entre 1,189 capítulos.</li>
+            </ul>
+          </div>
+
+          <div class="vf-postcard-showcase">
+            <div class="vf-postcard-preview">
+              <svg id="postcard-svg" viewBox="0 0 1080 1350" width="100%" height="100%" role="img" aria-label="Vista previa de postal bíblica para compartir">
+                <defs>
+                  <linearGradient id="pc-bg" x1="0" y1="0" x2="0" y2="1">
+                    <stop id="pc-stop-top" offset="0%" stop-color="#0B0E1D" />
+                    <stop id="pc-stop-bot" offset="100%" stop-color="#171C36" />
+                  </linearGradient>
+                  <clipPath id="pc-mini-clip">
+                    <path d="M170 1230 L170 1188 Q170 1164 194 1158 Q218 1164 218 1188 L218 1230 Z" />
+                  </clipPath>
+                </defs>
+                <rect width="1080" height="1350" fill="url(#pc-bg)" />
+                <rect id="pc-frame-outer" x="46" y="46" width="988" height="1258" rx="22" fill="none" stroke="#D4A446" stroke-width="3" />
+                <path id="pc-frame-inner" d="M72 240 Q72 92 540 74 Q1008 92 1008 240 L1008 1278 L72 1278 Z" fill="none" stroke="rgba(212,164,70,0.42)" stroke-width="2" />
+
+                <circle cx="540" cy="224" r="110" fill="#090910" />
+                <g id="pc-rosette"></g>
+                <circle id="pc-rosette-center" cx="540" cy="224" r="24" fill="#F5C451" stroke="#090910" stroke-width="4" />
+
+                <line id="pc-div1" x1="270" y1="376" x2="506" y2="376" stroke="rgba(212,164,70,0.42)" stroke-width="1.5" />
+                <line id="pc-div2" x1="574" y1="376" x2="810" y2="376" stroke="rgba(212,164,70,0.42)" stroke-width="1.5" />
+                <polygon id="pc-diamond" points="540,366 550,376 540,386 530,376" fill="#D4A446" />
+
+                <text id="pc-v1" x="540" y="590" text-anchor="middle" fill="#FAF4E6" font-family="Georgia, serif" font-size="42">«El Señor está cerca de los que tienen</text>
+                <text id="pc-v2" x="540" y="658" text-anchor="middle" fill="#FAF4E6" font-family="Georgia, serif" font-size="42">el corazón roto. Él salva a aquellos</text>
+                <text id="pc-v3" x="540" y="726" text-anchor="middle" fill="#FAF4E6" font-family="Georgia, serif" font-size="42">cuyo espíritu está quebrantado.»</text>
+
+                <line id="pc-div3" x1="430" y1="996" x2="650" y2="996" stroke="rgba(212,164,70,0.42)" stroke-width="1.5" />
+                <text id="pc-ref" x="540" y="1050" text-anchor="middle" fill="#F5C451" font-family="Alegreya Sans, sans-serif" font-weight="700" font-size="34">Salmos 34:18</text>
+                <text id="pc-ver" x="540" y="1088" text-anchor="middle" fill="#A8B0CC" font-family="Alegreya Sans, sans-serif" font-size="22">Versión Biblia Libre · VBL</text>
+
+                <rect id="pc-badge" x="130" y="1138" width="820" height="116" rx="22" fill="rgba(255,248,236,0.08)" stroke="rgba(245,196,81,0.45)" stroke-width="2" />
+                <g clip-path="url(#pc-mini-clip)">
+                  <rect x="170" y="1158" width="24" height="38" fill="#D94B43" />
+                  <rect x="194" y="1158" width="24" height="38" fill="#3E7BFA" />
+                  <rect x="170" y="1196" width="24" height="34" fill="#F5C451" />
+                  <rect x="194" y="1196" width="24" height="34" fill="#2E9E73" />
+                </g>
+                <path d="M170 1230 L170 1188 Q170 1164 194 1158 Q218 1164 218 1188 L218 1230 Z M194 1158 L194 1230 M170 1196 L218 1196" fill="none" stroke="#090910" stroke-width="3" />
+                <text id="pc-brand" x="248" y="1188" fill="#F5C451" font-family="Alegreya Sans, sans-serif" font-weight="700" font-size="28">VITRALES DE FE</text>
+                <text id="pc-sub" x="248" y="1222" fill="#E5DEC9" font-family="Alegreya Sans, sans-serif" font-weight="500" font-size="22">Lectura bíblica diaria · Disponible en Google Play</text>
+              </svg>
+            </div>
+
+            <div class="vf-theme-switcher" role="group" aria-label="Temas de postal">
+              <button type="button" class="vf-theme-chip active" data-theme="nocturno">Catedral Nocturna</button>
+              <button type="button" class="vf-theme-chip" data-theme="pergamino">Pergamino Real</button>
+              <button type="button" class="vf-theme-chip" data-theme="aurora">Luz de Aurora</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="vf-section" id="privacidad">
+        <div class="vf-callout-grid">
+          <div class="vf-callout-box vf-callout-dark">
+            <div>
+              <div class="vf-section-tag" style="color: #F5C451;">Post del proyecto</div>
+              <h3 class="vf-section-heading" style="font-size: 30px; color: #fff8ec;">
+                Cómo nació Vitrales de Fe: arte procedural y Biblia offline sin distracciones
+              </h3>
+              <p>
+                Lee el artículo en nuestro devlog sobre el diseño artesanal de letra roja, el motor vectorial de
+                4 capas y cómo integramos toda la Biblia en milisegundos.
+              </p>
+            </div>
+            <a href="/blog/vitrales-de-fe" class="vf-btn-link">Abrir el post en el devlog →</a>
+          </div>
+
+          <div class="vf-callout-box">
+            <div>
+              <div class="vf-section-tag">Transparencia total</div>
+              <h3 class="vf-section-heading" style="font-size: 28px;">
+                Sin cuentas, sin rastreadores y 100 % offline
+              </h3>
+              <p style="color: #5a5048;">
+                Todo tu avance, notas personales y separadores bíblicos viven en tu dispositivo con respaldo
+                exportable en JSON. Consulta nuestra política de privacidad oficial.
+              </p>
+            </div>
+            <a href="/vitrales-de-fe-privacidad" class="vf-btn-link">Leer Política de Privacidad →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="vf-footer">
+      <div class="vf-footer-inner">
+        <div>
+          <strong>Vitrales de Fe</strong> · Un proyecto de apoyo a la comunidad por <a href="/" style="color: #9e2b25; font-weight: 700;">Xcali Games</a> · Texto bíblico: Versión Biblia Libre (VBL, CC BY-SA 4.0)
+        </div>
+        <div class="vf-footer-links">
+          <a href="/">Xcali Games</a>
+          <a href="/blog/vitrales-de-fe">Post del proyecto</a>
+          <a href="/vitrales-de-fe-privacidad">Política de Privacidad</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const versesByTile = [
+        { name: 'El firmamento', ref: 'Salmos 19:1', text: '«Los cielos hablan de la gloria de Dios; los cielos anuncian la obra de sus manos.»' },
+        { name: 'El lucero', ref: '2 Pedro 1:19', text: '«Estén atentos hasta que amanezca el día y la estrella de la mañana brille en sus corazones.»' },
+        { name: 'La noche que se va', ref: 'Salmos 30:5', text: '«El llanto puede durar toda la noche, pero la alegría llega con la mañana.»' },
+        { name: 'La aurora', ref: 'Lamentaciones 3:23', text: '«Su fidelidad es grande; sus misericordias son nuevas cada mañana.»' },
+        { name: 'La luz', ref: 'Génesis 1:3', text: '«Entonces Dios dijo: “¡Que haya luz!”, y hubo luz.»' },
+        { name: 'El resplandor', ref: 'Juan 8:12', text: '«Yo soy la luz del mundo. El que me sigue no caminará en oscuridad.»' },
+        { name: 'Las aguas', ref: 'Salmos 23:2', text: '«Me da descanso en verdes pastos. Me guía a corrientes tranquilas.»' },
+        { name: 'El reflejo', ref: 'Salmos 36:9', text: '«Porque tú eres la fuente de vida; en tu luz vemos la luz.»' },
+        { name: 'Mar adentro', ref: 'Salmos 139:10', text: '«Incluso allí me guiará tu mano; tu mano derecha me sostendrá.»' },
+      ];
+
+      const tiles = Array.from(document.querySelectorAll('#demo-mural-svg .vf-mural-tile'));
+      const counterEl = document.getElementById('demo-counter');
+      const nameEl = document.getElementById('capsule-tile-name');
+      const refEl = document.getElementById('capsule-ref');
+      const textEl = document.getElementById('capsule-text');
+      const resetBtn = document.getElementById('reset-demo');
+
+      function updateCounter() {
+        if (!counterEl) return;
+        const lit = tiles.filter((t) => t.classList.contains('vf-tile-lit')).length;
+        counterEl.textContent = `${lit} / ${tiles.length} cuadros`;
+      }
+
+      tiles.forEach((tile) => {
+        tile.addEventListener('click', () => {
+          const idx = Number(tile.getAttribute('data-tile') || '0');
+          tile.classList.remove('vf-tile-dark');
+          tile.classList.add('vf-tile-lit');
+          const data = versesByTile[idx] || versesByTile[0];
+          if (nameEl) nameEl.textContent = `Pieza: ${data.name}`;
+          if (refEl) refEl.textContent = data.ref;
+          if (textEl) textEl.textContent = data.text;
+          updateCounter();
+        });
+      });
+
+      resetBtn?.addEventListener('click', () => {
+        tiles.forEach((tile, idx) => {
+          tile.classList.toggle('vf-tile-lit', idx < 4);
+          tile.classList.toggle('vf-tile-dark', idx >= 4);
+        });
+        const initial = versesByTile[3];
+        if (nameEl) nameEl.textContent = `Pieza: ${initial.name}`;
+        if (refEl) refEl.textContent = initial.ref;
+        if (textEl) textEl.textContent = initial.text;
+        updateCounter();
+      });
+
+      const tabButtons = document.querySelectorAll('.vf-tab-btn');
+      const gridProg = document.getElementById('grid-progressive');
+      const gridSpec = document.getElementById('grid-special');
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const mode = btn.getAttribute('data-filter');
+          tabButtons.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-selected', String(active));
+          });
+          gridProg?.classList.toggle('vf-hidden', mode !== 'progressive');
+          gridSpec?.classList.toggle('vf-hidden', mode !== 'special');
+        });
+      });
+
+      const postcardThemes: Record<string, {
+        bgTop: string; bgBot: string; outer: string; inner: string; verse: string;
+        ref: string; ver: string; badgeBg: string; badgeBorder: string; brand: string;
+        sub: string; petals: string[];
+      }> = {
+        nocturno: {
+          bgTop: '#0B0E1D',
+          bgBot: '#171C36',
+          outer: '#D4A446',
+          inner: 'rgba(212,164,70,0.42)',
+          verse: '#FAF4E6',
+          ref: '#F5C451',
+          ver: '#A8B0CC',
+          badgeBg: 'rgba(255,248,236,0.08)',
+          badgeBorder: 'rgba(245,196,81,0.45)',
+          brand: '#F5C451',
+          sub: '#E5DEC9',
+          petals: ['#D94B43', '#3E7BFA', '#F5C451', '#2E9E73', '#9B5DE5', '#E87A3D'],
+        },
+        pergamino: {
+          bgTop: '#FCF8EE',
+          bgBot: '#EDE1C9',
+          outer: '#9E2B25',
+          inner: 'rgba(158,43,37,0.34)',
+          verse: '#221C18',
+          ref: '#9E2B25',
+          ver: '#6E6358',
+          badgeBg: 'rgba(158,43,37,0.07)',
+          badgeBorder: 'rgba(158,43,37,0.32)',
+          brand: '#9E2B25',
+          sub: '#433932',
+          petals: ['#B83B35', '#2D60C8', '#D9A21B', '#2B7A58', '#7B3FA0', '#C95C2B'],
+        },
+        aurora: {
+          bgTop: '#1D1128',
+          bgBot: '#35192B',
+          outer: '#E8BA73',
+          inner: 'rgba(232,186,115,0.42)',
+          verse: '#FFF6EA',
+          ref: '#F6C87E',
+          ver: '#D2B8C6',
+          badgeBg: 'rgba(255,246,234,0.08)',
+          badgeBorder: 'rgba(246,200,126,0.45)',
+          brand: '#F6C87E',
+          sub: '#F1DFDF',
+          petals: ['#E05A6D', '#8C62D6', '#F5C451', '#E8854B', '#48A9A6', '#D45D89'],
+        },
+      };
+
+      const rosetteGroup = document.getElementById('pc-rosette');
+      const petalPolygons: { poly: SVGPolygonElement; colorIndex: number }[] = [];
+
+      if (rosetteGroup) {
+        for (let i = 0; i < 12; i += 1) {
+          const angle = (i / 12) * Math.PI * 2 - Math.PI / 2;
+          const half = (Math.PI / 12) * 0.86;
+          const midR = 26 + (104 - 26) * 0.56;
+          const pts = [
+            [540 + Math.cos(angle) * 26, 224 + Math.sin(angle) * 26],
+            [540 + Math.cos(angle - half) * midR, 224 + Math.sin(angle - half) * midR],
+            [540 + Math.cos(angle) * 104, 224 + Math.sin(angle) * 104],
+            [540 + Math.cos(angle + half) * midR, 224 + Math.sin(angle + half) * midR],
+          ];
+          const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          poly.setAttribute('points', pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' '));
+          poly.setAttribute('stroke', '#090910');
+          poly.setAttribute('stroke-width', '4');
+          poly.setAttribute('stroke-linejoin', 'round');
+          rosetteGroup.appendChild(poly);
+          petalPolygons.push({ poly, colorIndex: i % 6 });
+        }
+      }
+
+      function applyPostcardTheme(id: string) {
+        const t = postcardThemes[id] || postcardThemes.nocturno;
+        document.getElementById('pc-stop-top')?.setAttribute('stop-color', t.bgTop);
+        document.getElementById('pc-stop-bot')?.setAttribute('stop-color', t.bgBot);
+        document.getElementById('pc-frame-outer')?.setAttribute('stroke', t.outer);
+        document.getElementById('pc-frame-inner')?.setAttribute('stroke', t.inner);
+        document.getElementById('pc-div1')?.setAttribute('stroke', t.inner);
+        document.getElementById('pc-div2')?.setAttribute('stroke', t.inner);
+        document.getElementById('pc-div3')?.setAttribute('stroke', t.inner);
+        document.getElementById('pc-diamond')?.setAttribute('fill', t.outer);
+        ['pc-v1', 'pc-v2', 'pc-v3'].forEach((vid) => document.getElementById(vid)?.setAttribute('fill', t.verse));
+        document.getElementById('pc-ref')?.setAttribute('fill', t.ref);
+        document.getElementById('pc-ver')?.setAttribute('fill', t.ver);
+        document.getElementById('pc-badge')?.setAttribute('fill', t.badgeBg);
+        document.getElementById('pc-badge')?.setAttribute('stroke', t.badgeBorder);
+        document.getElementById('pc-brand')?.setAttribute('fill', t.brand);
+        document.getElementById('pc-sub')?.setAttribute('fill', t.sub);
+        petalPolygons.forEach(({ poly, colorIndex }) => poly.setAttribute('fill', t.petals[colorIndex]));
+      }
+
+      applyPostcardTheme('nocturno');
+      document.querySelectorAll('.vf-theme-chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('.vf-theme-chip').forEach((c) => c.classList.toggle('active', c === chip));
+          applyPostcardTheme(chip.getAttribute('data-theme') || 'nocturno');
+        });
+      });
+    </script>
+
+    <style>
+      .vf-body {
+        --vf-nave: #f5efe1;
+        --vf-aisle: #fcf8ee;
+        --vf-raised: #eae2cf;
+        --vf-lead: #090910;
+        --vf-night: #0b0e1d;
+        --vf-night-deep: #141933;
+        --vf-accent: #9e2b25;
+        --vf-accent-deep: #7f211c;
+        --vf-accent-wash: rgba(158, 43, 37, 0.09);
+        --vf-on-accent: #fff8ec;
+        --vf-gold: #f5c451;
+        --vf-ink: #221c18;
+        --vf-ink-soft: #5a5048;
+        --vf-ink-muted: #8a7f73;
+        --vf-line: rgba(34, 28, 24, 0.11);
+        --vf-line-strong: rgba(34, 28, 24, 0.22);
+        --vf-serif: Georgia, 'Times New Roman', serif;
+        --vf-display: 'Cinzel', Georgia, serif;
+        margin: 0;
+        background: var(--vf-nave);
+        color: var(--vf-ink);
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .vf-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(12px);
+        background: rgba(245, 239, 225, 0.9);
+        border-bottom: 1px solid var(--vf-line);
+      }
+
+      .vf-topbar-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .vf-brand-group {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .vf-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--vf-display);
+        font-size: 21px;
+        font-weight: 600;
+        color: var(--vf-ink);
+      }
+
+      .vf-studio-badge {
+        padding: 4px 11px;
+        border-radius: 999px;
+        border: 1px solid var(--vf-line-strong);
+        background: var(--vf-aisle);
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--vf-ink-soft);
+      }
+
+      .vf-studio-badge:hover {
+        border-color: var(--vf-accent);
+        color: var(--vf-accent);
+      }
+
+      .vf-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--vf-ink-soft);
+      }
+
+      .vf-nav a:hover {
+        color: var(--vf-accent);
+      }
+
+      .vf-nav-cta {
+        display: inline-flex;
+        align-items: center;
+        padding: 9px 16px;
+        border-radius: 999px;
+        background: var(--vf-accent);
+        color: var(--vf-on-accent) !important;
+        font-size: 13.5px;
+      }
+
+      .vf-nav-cta:hover {
+        background: var(--vf-accent-deep);
+      }
+
+      .vf-hero {
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 72% 28%, rgba(245, 196, 81, 0.16), transparent 44%),
+          linear-gradient(175deg, var(--vf-night) 0%, var(--vf-night-deep) 68%, #1d2240 100%);
+        color: #faf4e6;
+        border-bottom: 1px solid rgba(245, 196, 81, 0.22);
+      }
+
+      .vf-hero-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 70px 24px 82px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+        gap: 50px;
+        align-items: center;
+      }
+
+      .vf-eyebrow {
+        display: inline-flex;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(245, 196, 81, 0.35);
+        background: rgba(245, 196, 81, 0.08);
+        color: var(--vf-gold);
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      .vf-h1 {
+        font-family: var(--vf-serif);
+        font-size: clamp(36px, 4.8vw, 54px);
+        line-height: 1.08;
+        font-weight: 400;
+        color: #fff9ed;
+        margin-bottom: 18px;
+      }
+
+      .vf-h1 em {
+        font-style: italic;
+        color: var(--vf-gold);
+      }
+
+      .vf-hero-copy {
+        font-size: 18px;
+        line-height: 1.65;
+        color: #d7d2c7;
+        max-width: 560px;
+        margin-bottom: 26px;
+      }
+
+      .vf-mood-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .vf-mood-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 13px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        font-size: 13.5px;
+        color: #ece6d9;
+      }
+
+      .vf-mood-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
+
+      .vf-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .vf-btn-gold {
+        display: inline-flex;
+        align-items: center;
+        padding: 13px 24px;
+        border-radius: 14px;
+        background: var(--vf-gold);
+        color: #16130f;
+        font-weight: 800;
+        font-size: 15.5px;
+      }
+
+      .vf-btn-outline-light {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 22px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 248, 236, 0.28);
+        color: #fff8ec;
+        font-weight: 700;
+        font-size: 15.5px;
+      }
+
+      .vf-hero-stats {
+        margin-top: 32px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .vf-stat-num {
+        font-family: var(--vf-display);
+        font-size: 24px;
+        color: var(--vf-gold);
+      }
+
+      .vf-stat-label {
+        font-size: 13px;
+        color: #b7b3a9;
+        margin-top: 2px;
+      }
+
+      .vf-stage {
+        background: rgba(10, 12, 24, 0.65);
+        border: 1px solid rgba(245, 196, 81, 0.3);
+        border-radius: 26px;
+        padding: 22px;
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      .vf-stage-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+
+      .vf-stage-title {
+        font-family: var(--vf-serif);
+        font-size: 20px;
+        color: #fff8ec;
+      }
+
+      .vf-stage-counter {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--vf-gold);
+      }
+
+      .vf-arch-frame {
+        border-radius: 180px 180px 14px 14px;
+        padding: 10px;
+        background: linear-gradient(145deg, #b4862b, #f7d77e 50%, #9b701d);
+      }
+
+      .vf-arch-inner {
+        border-radius: 170px 170px 10px 10px;
+        overflow: hidden;
+        background: var(--vf-lead);
+        border: 3px solid var(--vf-lead);
+      }
+
+      #demo-mural-svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .vf-mural-tile {
+        cursor: pointer;
+        transition: opacity 0.22s ease, filter 0.22s ease;
+      }
+
+      .vf-mural-tile:hover {
+        filter: brightness(1.16);
+      }
+
+      .vf-tile-dark {
+        opacity: 0.2;
+        filter: saturate(0.25) brightness(0.45);
+      }
+
+      .vf-tile-lit {
+        opacity: 1;
+        filter: saturate(1.12) brightness(1.04);
+      }
+
+      .vf-capsule-live {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: rgba(255, 248, 236, 0.06);
+        border: 1px solid rgba(245, 196, 81, 0.22);
+      }
+
+      .vf-capsule-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12.5px;
+        color: var(--vf-gold);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+
+      .vf-capsule-verse {
+        font-family: var(--vf-serif);
+        font-size: 16.5px;
+        line-height: 1.45;
+        color: #faf4e6;
+      }
+
+      .vf-stage-footer {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12.5px;
+        color: #aba69c;
+      }
+
+      .vf-reset-btn {
+        background: transparent;
+        border: 1px solid rgba(255, 248, 236, 0.25);
+        color: #faf4e6;
+        border-radius: 999px;
+        padding: 5px 12px;
+        font-size: 12.5px;
+        cursor: pointer;
+      }
+
+      .vf-section {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 76px 24px;
+      }
+
+      .vf-section + .vf-section {
+        border-top: 1px solid var(--vf-line);
+      }
+
+      .vf-section-tag {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--vf-accent);
+        margin-bottom: 10px;
+      }
+
+      .vf-section-heading {
+        font-family: var(--vf-serif);
+        font-size: clamp(28px, 3.6vw, 40px);
+        line-height: 1.15;
+        font-weight: 400;
+        color: var(--vf-ink);
+        margin-bottom: 14px;
+        max-width: 680px;
+      }
+
+      .vf-section-sub {
+        font-size: 17px;
+        color: var(--vf-ink-soft);
+        max-width: 660px;
+        margin-bottom: 36px;
+      }
+
+      .vf-steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .vf-step-card {
+        background: var(--vf-aisle);
+        border: 1px solid var(--vf-line);
+        border-radius: 16px;
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .vf-step-num {
+        display: inline-flex;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--vf-accent-wash);
+        border: 1px solid var(--vf-accent);
+        color: var(--vf-accent);
+        font-family: var(--vf-serif);
+        font-size: 18px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .vf-step-card h3 {
+        font-family: var(--vf-serif);
+        font-size: 22px;
+        color: var(--vf-ink);
+        font-weight: 500;
+      }
+
+      .vf-step-card p {
+        font-size: 15.5px;
+        color: var(--vf-ink-soft);
+      }
+
+      .vf-tabs {
+        display: inline-flex;
+        padding: 4px;
+        border-radius: 16px;
+        background: var(--vf-raised);
+        border: 1px solid var(--vf-line);
+        margin-bottom: 28px;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+
+      .vf-tab-btn {
+        border: none;
+        background: transparent;
+        color: var(--vf-ink-soft);
+        font-size: 14px;
+        font-weight: 700;
+        padding: 9px 16px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+
+      .vf-tab-btn.active {
+        background: var(--vf-accent);
+        color: var(--vf-on-accent);
+      }
+
+      .vf-murals-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .vf-mural-card {
+        background: var(--vf-aisle);
+        border: 1px solid var(--vf-line);
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .vf-mural-thumb {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        border-radius: 10px;
+        border: 2px solid var(--vf-lead);
+        background: var(--vf-lead);
+      }
+
+      .vf-mural-card h4 {
+        font-family: var(--vf-serif);
+        font-size: 18px;
+        color: var(--vf-ink);
+        font-weight: 500;
+      }
+
+      .vf-mural-meta {
+        font-size: 13px;
+        color: var(--vf-ink-muted);
+      }
+
+      .vf-mural-theme {
+        font-size: 13.5px;
+        color: var(--vf-ink-soft);
+        line-height: 1.45;
+      }
+
+      .vf-hidden {
+        display: none !important;
+      }
+
+      .vf-split-feature {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 40px;
+        align-items: center;
+      }
+
+      .vf-feature-list {
+        list-style: none;
+        display: grid;
+        gap: 14px;
+        padding: 0;
+      }
+
+      .vf-feature-list li {
+        padding-left: 22px;
+        position: relative;
+        font-size: 16px;
+        color: var(--vf-ink-soft);
+      }
+
+      .vf-feature-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        transform: rotate(45deg);
+        background: var(--vf-accent);
+      }
+
+      .vf-feature-list strong {
+        color: var(--vf-ink);
+      }
+
+      .vf-postcard-showcase {
+        background: var(--vf-aisle);
+        border: 1px solid var(--vf-line-strong);
+        border-radius: 24px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .vf-postcard-preview {
+        width: 100%;
+        max-width: 310px;
+        aspect-ratio: 4 / 5;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--vf-line-strong);
+        box-shadow: 0 18px 40px rgba(34, 28, 24, 0.16);
+      }
+
+      .vf-theme-switcher {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .vf-theme-chip {
+        border: 1px solid var(--vf-line-strong);
+        background: var(--vf-nave);
+        color: var(--vf-ink-soft);
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .vf-theme-chip.active {
+        border-color: var(--vf-accent);
+        background: var(--vf-accent-wash);
+        color: var(--vf-accent);
+      }
+
+      .vf-callout-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 24px;
+      }
+
+      .vf-callout-box {
+        background: var(--vf-aisle);
+        border: 1px solid var(--vf-line-strong);
+        border-radius: 24px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .vf-callout-dark {
+        background: linear-gradient(155deg, var(--vf-night), var(--vf-night-deep));
+        color: #faf4e6;
+        border-color: rgba(245, 196, 81, 0.28);
+      }
+
+      .vf-callout-dark p {
+        color: #d0cabf;
+      }
+
+      .vf-btn-link {
+        display: inline-flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--vf-accent);
+      }
+
+      .vf-callout-dark .vf-btn-link {
+        color: var(--vf-gold);
+      }
+
+      .vf-footer {
+        border-top: 1px solid var(--vf-line);
+        background: var(--vf-aisle);
+        padding: 34px 24px;
+      }
+
+      .vf-footer-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 14px;
+        color: var(--vf-ink-soft);
+      }
+
+      .vf-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      @media (max-width: 960px) {
+        .vf-hero-inner,
+        .vf-split-feature,
+        .vf-callout-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .vf-murals-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .vf-steps-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .vf-nav a:not(.vf-nav-cta) {
+          display: none;
+        }
+
+        .vf-murals-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -31,6 +31,7 @@ const {
 } = Astro.props;
 
 const isVectorPost = tags.includes('vector-protocol');
+const isVitralesPost = tags.includes('vitrales-de-fe');
 
 // Cálculo de tiempo de lectura estimado (200 palabras por minuto)
 const wordCount = rawContent.trim().split(/\s+/).filter(Boolean).length;
@@ -124,6 +125,22 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
           <div class="mt-6 flex flex-wrap gap-4">
             <a href="https://vector.xcaligames.cloud/" target="_blank" rel="noopener noreferrer" class="btn-vector inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
               Jugar demo en vector.xcaligames.cloud
+            </a>
+            <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
+              Más entradas
+            </a>
+          </div>
+        </>
+      ) : isVitralesPost ? (
+        <>
+          <h2 class="text-3xl text-parchment">Explora Vitrales de Fe</h2>
+          <p class="mt-2 text-lg text-ash">Descubre el proyecto interactivo de apoyo a la comunidad: 15 vitrales en SVG, 66 libros de la Biblia offline y postales para compartir.</p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a href="/vitrales-de-fe" class="btn-ember inline-flex min-h-12 items-center rounded-full px-6 font-extrabold transition">
+              Abrir página de Vitrales de Fe
+            </a>
+            <a href="/vitrales-de-fe-privacidad" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
+              Política de Privacidad
             </a>
             <a href="/blog" class="inline-flex min-h-12 items-center rounded-full border border-line px-6 font-bold text-parchment transition hover:border-gold hover:text-gold">
               Más entradas

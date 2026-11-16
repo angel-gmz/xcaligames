@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PlayingCard from '../components/PlayingCard.astro';
 
 import riseriftImg from '../assets/images/riserift-cover.png';
+import vitralesCoverImg from '../assets/images/vitrales-de-fe-cover.png';
 import vectorHangarImg from '../assets/images/vector-protocol-hangar.png';
 import vectorArenaImg from '../assets/images/vector-protocol-arena.png';
 import shot1 from '../assets/images/torchbound/captura-1.jpg';
@@ -294,6 +295,74 @@ const rules = [
         <a href="/blog" class="mt-6 inline-block rounded-lg py-2 text-lg font-bold text-rift underline decoration-rift/50 underline-offset-[6px] hover:text-parchment">
           Sigue su desarrollo en el devlog
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apoyo a la comunidad: Vitrales de Fe -->
+  <section id="comunidad" class="border-t border-line/60 py-20 sm:py-24" aria-labelledby="heading-comunidad">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-gold/30 bg-crypt p-6 shadow-2xl shadow-black/40 sm:p-8 lg:p-10">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <p class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[15px] font-bold text-gold">
+              <span class="h-2 w-2 rounded-full bg-gold"></span>
+              Apoyo a la comunidad · Gratis y sin anuncios
+            </p>
+            <h2 id="heading-comunidad" class="mt-4 text-4xl leading-tight text-parchment sm:text-5xl">
+              Vitrales de Fe
+            </h2>
+            <p class="mt-4 text-xl leading-relaxed text-ash">
+              Además de hacer videojuegos, desarrollamos proyectos gratuitos para acompañar a la comunidad en el día a día. <strong>Vitrales de Fe</strong> convierte la lectura bíblica diaria en un hábito visual y sereno, sin culpas ni rastreadores.
+            </p>
+            <ul class="mt-6 space-y-2.5 text-[17px] leading-relaxed text-ash">
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+                <span><strong class="text-parchment">15 vitrales coleccionables:</strong> 235 piezas dibujadas en SVG que iluminas lectura a lectura.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+                <span><strong class="text-parchment">Biblia completa offline:</strong> los 66 libros de la Versión Biblia Libre (VBL), con separadores y buscador.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+                <span><strong class="text-parchment">Postales para compartir:</strong> crea tarjetas de vitral en PNG para enviar versículos a tu familia o grupo.</span>
+              </li>
+            </ul>
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href="/vitrales-de-fe"
+                class="btn-ember inline-flex min-h-14 items-center gap-3 rounded-full px-7 text-lg font-extrabold transition"
+              >
+                Abrir página de Vitrales de Fe
+              </a>
+              <a
+                href="/blog/vitrales-de-fe"
+                class="rounded-lg py-2 text-lg font-bold text-parchment underline decoration-gold/60 underline-offset-[6px] hover:text-gold"
+              >
+                Leer nota en el devlog
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <a
+              href="/vitrales-de-fe"
+              class="group block overflow-hidden rounded-2xl border border-gold/30 bg-night shadow-xl shadow-black/50"
+              aria-label="Visitar la página de Vitrales de Fe"
+            >
+              <Image
+                src={vitralesCoverImg}
+                alt="Vitrales de Fe: rosetón gótico iluminado, vitral de la creación y lector bíblico en papel de códice"
+                width={800}
+                height={420}
+                format="webp"
+                loading="lazy"
+                class="h-auto w-full transition duration-300 group-hover:scale-[1.02]"
+              />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

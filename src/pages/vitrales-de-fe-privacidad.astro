@@ -1,0 +1,167 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import '../styles/global.css';
+import coverImg from '../assets/images/vitrales-de-fe-cover.png';
+
+const title = 'Política de Privacidad — Vitrales de Fe';
+const description =
+  'Política de Privacidad oficial de la aplicación móvil Vitrales de Fe (Xcali Games). Funciona 100 % sin conexión y no recopila ni comparte datos personales.';
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <SEOHead title={title} description={description} ogImage={coverImg.src} />
+  </head>
+  <body class="vfp-body">
+    <main class="vfp-card">
+      <nav class="vfp-nav" aria-label="Navegación">
+        <a href="/vitrales-de-fe">← Volver a Vitrales de Fe</a>
+        <div class="vfp-nav-links">
+          <a href="/">Xcali Games</a>
+          <a href="/blog/vitrales-de-fe">Post del proyecto</a>
+        </div>
+      </nav>
+
+      <h1>Política de Privacidad — Vitrales de Fe</h1>
+      <div class="vfp-updated">Última actualización: noviembre de 2026 · Xcali Games (Apoyo a la comunidad)</div>
+
+      <div class="vfp-summary">
+        <strong>Resumen:</strong> Vitrales de Fe funciona 100 % sin conexión a internet. No recopilamos,
+        transmitimos, vendemos ni compartimos datos personales, y no mostramos publicidad ni rastreadores.
+      </div>
+
+      <h2>1. Datos que recopilamos</h2>
+      <p>
+        <strong>No recopilamos información personal.</strong> La Aplicación no solicita registro, nombre,
+        correo electrónico, número telefónico, ubicación, cámara, micrófono ni acceso a tus contactos, y no
+        integra SDKs de analítica ni redes publicitarias de terceros.
+      </p>
+
+      <h2>2. Almacenamiento local en tu dispositivo</h2>
+      <p>
+        Toda la información que generas dentro de Vitrales de Fe —como tus lecturas completadas, cuadros
+        iluminados, notas personales en las Cápsulas de Memoria, separadores bíblicos, capítulos leídos y
+        preferencias— se guarda únicamente en el almacenamiento interno de tu propio dispositivo.
+      </p>
+      <p>
+        Si utilizas la función opcional de exportar o importar un respaldo JSON, o si compartes una postal de
+        versículo mediante la hoja del sistema de tu teléfono, tú decides libremente en qué destino guardarla o
+        con quién compartirla.
+      </p>
+
+      <h2>3. Permisos del dispositivo</h2>
+      <p>
+        La versión para Android de Vitrales de Fe no solicita permisos sensibles ni invasivos del sistema
+        operativo para funcionar.
+      </p>
+
+      <h2>4. Privacidad de menores</h2>
+      <p>
+        Al no recopilar ni transmitir datos personales de ningún usuario, la Aplicación tampoco recopila
+        información personal de menores de edad.
+      </p>
+
+      <h2>5. Texto bíblico y atribución</h2>
+      <p>
+        Los textos bíblicos incluidos en la Aplicación corresponden a la <strong>Versión Biblia Libre (VBL)</strong>,
+        disponible bajo licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0).
+      </p>
+
+      <h2>6. Cambios y contacto</h2>
+      <p>
+        Cualquier actualización futura de esta Política de Privacidad se publicará en esta misma página con su
+        fecha de actualización. Si tienes dudas sobre esta política, puedes escribir al correo de soporte del
+        desarrollador publicado en la ficha oficial de Google Play Store.
+      </p>
+    </main>
+
+    <style>
+      .vfp-body {
+        margin: 0;
+        background: #f5efe1;
+        color: #221c18;
+        font-family: var(--font-sans);
+        line-height: 1.7;
+        padding: 36px 20px 72px;
+        min-height: 100vh;
+      }
+
+      .vfp-card {
+        max-width: 740px;
+        margin: 0 auto;
+        background: #fcf8ee;
+        border: 1px solid rgba(34, 28, 24, 0.14);
+        border-radius: 22px;
+        padding: 40px 34px;
+      }
+
+      .vfp-nav {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 28px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #9e2b25;
+      }
+
+      .vfp-nav-links {
+        display: flex;
+        gap: 16px;
+      }
+
+      h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: 400;
+        line-height: 1.15;
+        color: #221c18;
+        margin-bottom: 8px;
+      }
+
+      .vfp-updated {
+        font-size: 14px;
+        color: #8a7f73;
+        margin-bottom: 26px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(34, 28, 24, 0.12);
+      }
+
+      h2 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 22px;
+        font-weight: 400;
+        color: #221c18;
+        margin: 26px 0 10px;
+      }
+
+      p {
+        font-size: 16px;
+        color: #544b43;
+        margin-bottom: 14px;
+      }
+
+      strong {
+        color: #221c18;
+      }
+
+      .vfp-summary {
+        padding: 16px 20px;
+        border-radius: 14px;
+        background: rgba(158, 43, 37, 0.08);
+        border: 1px solid rgba(158, 43, 37, 0.25);
+        margin-bottom: 22px;
+        font-size: 15.5px;
+        color: #221c18;
+      }
+
+      @media (max-width: 560px) {
+        .vfp-card {
+          padding: 28px 20px;
+        }
+      }
+    </style>
+  </body>
+</html>
